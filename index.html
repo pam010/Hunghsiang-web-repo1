@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>鴻翔機械有限公司 | 專業自動化電池組裝機械製造</title>
-    <meta name="description" content="鴻翔機械專注於製造自動化電池組裝機械，提供嚴謹、高效的工業級解決方案。">
+    <title>鴻翔機械有限公司 | 專注規劃自動化電池組裝</title>
+    <meta name="description" content="鴻翔機械有限公司，深耕電池自動化十八年，專注規劃自動化電池組裝，提供嚴謹、高效的工業級交鑰匙工程。">
     
     <!-- Google Fonts: Noto Sans TC -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,15 +30,15 @@
                     },
                     colors: {
                         industrial: {
-                            900: '#0f172a', // Deep slate
+                            900: '#0f172a',
                             800: '#1e293b',
                             700: '#334155',
-                            accent: '#0284c7', // Professional Blue
+                            accent: '#0284c7',
                             light: '#f8fafc',
                         }
                     },
                     backgroundImage: {
-                        'hero-pattern': "linear-gradient(to right bottom, rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.7)), url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop')",
+                        'hero-pattern': "linear-gradient(to right bottom, rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.7)), url('https://images.unsplash.com/photo-1563770660941-20978e870e26?q=80&w=2070&auto=format&fit=crop')",
                     }
                 }
             }
@@ -46,7 +46,6 @@
     </script>
 
     <style>
-        /* Noise Texture Overlay */
         .noise-bg {
             position: fixed;
             top: 0;
@@ -59,7 +58,6 @@
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
 
-        /* Glassmorphism Utilities */
         .glass-card {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(12px);
@@ -75,22 +73,11 @@
             box-shadow: 0 10px 40px rgba(2, 132, 199, 0.15);
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0f172a;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #334155;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #0284c7;
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #0284c7; }
 
-        /* ThreeJS Canvas */
         #three-canvas {
             position: absolute;
             top: 0;
@@ -102,15 +89,11 @@
             pointer-events: none;
         }
         
-        .content-layer {
-            position: relative;
-            z-index: 10;
-        }
+        .content-layer { position: relative; z-index: 10; }
     </style>
 </head>
 <body class="bg-industrial-light text-industrial-900 antialiased overflow-x-hidden selection:bg-industrial-accent selection:text-white">
 
-    <!-- Global Noise Texture -->
     <div class="noise-bg"></div>
 
     <!-- Navigation -->
@@ -122,13 +105,13 @@
                     HX
                 </div>
                 <div>
-                    <h1 class="text-white font-bold text-xl tracking-wider">鴻翔機械</h1>
+                    <h1 class="text-white font-bold text-xl tracking-wider">鴻翔機械有限公司</h1>
                     <p class="text-industrial-accent text-xs font-tech tracking-widest">MACHINERY</p>
                 </div>
             </a>
             
             <div class="hidden md:flex items-center gap-8">
-                <a href="#about" class="text-gray-300 hover:text-white text-sm font-medium transition-colors">關於鴻翔</a>
+                <a href="#about" class="text-gray-300 hover:text-white text-sm font-medium transition-colors">關於我們</a>
                 <a href="#products" class="text-gray-300 hover:text-white text-sm font-medium transition-colors">產品及服務</a>
                 <a href="#contact" class="text-gray-300 hover:text-white text-sm font-medium transition-colors">聯絡我們</a>
                 <a href="#contact" class="px-5 py-2 bg-industrial-accent hover:bg-blue-600 text-white text-sm font-bold rounded transition-all shadow-[0_0_15px_rgba(2,132,199,0.4)] hover:shadow-[0_0_25px_rgba(2,132,199,0.6)]">
@@ -136,7 +119,6 @@
                 </a>
             </div>
 
-            <!-- Mobile Menu Button -->
             <button class="md:hidden text-white text-2xl" id="mobile-menu-btn">
                 <iconify-icon icon="mdi:menu"></iconify-icon>
             </button>
@@ -148,22 +130,18 @@
         <!-- SVG Animation Layer -->
         <div class="absolute inset-0 z-0 flex items-center justify-center opacity-20 overflow-hidden pointer-events-none">
             <svg viewBox="0 0 800 800" class="w-full max-w-4xl opacity-50" id="hero-svg">
-                <!-- Outer Gear -->
                 <g class="gear-outer" stroke="#ffffff" stroke-width="2" fill="none">
                     <circle cx="400" cy="400" r="300" stroke-dasharray="10 20" />
                     <circle cx="400" cy="400" r="280" />
-                    <!-- Teeth -->
                     <path d="M400 80 L420 50 L380 50 Z" />
                     <path d="M400 720 L420 750 L380 750 Z" />
                     <path d="M720 400 L750 380 L750 420 Z" />
                     <path d="M80 400 L50 380 L50 420 Z" />
                 </g>
-                <!-- Inner Battery Assembly Core -->
                 <g class="battery-core" fill="none" stroke="#0284c7" stroke-width="4">
                     <rect x="340" y="300" width="120" height="200" rx="10" />
                     <rect x="380" y="280" width="40" height="20" rx="4" fill="#0284c7" />
                     <line x1="340" y1="400" x2="460" y2="400" stroke-dasharray="5 5" />
-                    <!-- Pulse Lines -->
                     <path class="pulse-line" d="M200 400 L340 400" stroke="#ffffff" stroke-width="2" />
                     <path class="pulse-line" d="M460 400 L600 400" stroke="#ffffff" stroke-width="2" />
                 </g>
@@ -171,14 +149,16 @@
         </div>
 
         <div class="max-w-7xl mx-auto px-6 relative z-10 w-full flex flex-col items-start">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-industrial-800/80 border border-industrial-700 backdrop-blur-sm mb-6 gs-reveal">
-                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                <span class="text-xs font-tech text-gray-300 tracking-wider">SYSTEM ONLINE / HIGH PRECISION</span>
+            
+            <!-- 全新設計的工程風格 Badge -->
+            <div class="inline-flex items-center gap-3 px-4 py-1.5 bg-gradient-to-r from-industrial-800/90 to-industrial-900/90 border-l-4 border-industrial-accent backdrop-blur-sm shadow-[0_4px_15px_rgba(0,0,0,0.2)] mb-6 gs-reveal">
+                <iconify-icon icon="mdi:cogs" class="text-industrial-accent text-sm animate-[spin_4s_linear_infinite]"></iconify-icon>
+                <span class="text-xs font-tech text-gray-200 tracking-[0.15em] font-bold uppercase">Industry 4.0 Ready // Turnkey Solutions</span>
             </div>
             
             <h2 class="text-5xl md:text-7xl font-black text-white leading-tight mb-6 gs-reveal max-w-4xl">
-                專注於製造 <br />
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-industrial-accent to-blue-400">自動化電池組裝機械</span>
+                專注規劃 <br />
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-industrial-accent to-blue-400">自動化電池組裝</span>
             </h2>
             
             <p class="text-gray-300 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed gs-reveal font-light border-l-4 border-industrial-accent pl-4">
@@ -196,8 +176,7 @@
                 </a>
             </div>
             
-            <!-- Quick Stats -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 border-t border-white/20 pt-8 w-full gs-reveal">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20 border-t border-white/20 pt-8 w-full max-w-4xl gs-reveal">
                 <div>
                     <div class="text-3xl font-tech font-bold text-white mb-1">0.01<span class="text-industrial-accent text-lg">mm</span></div>
                     <div class="text-gray-400 text-xs font-medium">定位精度 (Positioning Accuracy)</div>
@@ -210,10 +189,6 @@
                     <div class="text-3xl font-tech font-bold text-white mb-1">24<span class="text-industrial-accent text-lg">/7</span></div>
                     <div class="text-gray-400 text-xs font-medium">連續運轉設計 (Continuous Operation)</div>
                 </div>
-                <div>
-                    <div class="text-3xl font-tech font-bold text-white mb-1">ISO<span class="text-industrial-accent text-lg">9001</span></div>
-                    <div class="text-gray-400 text-xs font-medium">國際品質認證 (Quality Certified)</div>
-                </div>
             </div>
         </div>
     </header>
@@ -224,13 +199,18 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div class="gs-fade-up">
                     <h6 class="text-industrial-accent font-bold tracking-widest text-sm mb-2 uppercase">About Us</h6>
-                    <h3 class="text-3xl md:text-4xl font-black text-industrial-900 mb-6">關於鴻翔：精密與效率的代名詞</h3>
+                    <h3 class="text-3xl md:text-4xl font-black text-industrial-900 mb-6 leading-snug">
+                        深耕電池自動化<br/>
+                        <span class="text-industrial-accent">十八年的工程夥伴</span>
+                    </h3>
+                    
                     <p class="text-gray-600 leading-relaxed mb-6">
-                        鴻翔機械有限公司 (Hongxiang Machinery) 深耕自動化設備領域多年，致力於為新能源產業提供最可靠的後盾。我們的核心技術團隊精通機械設計、機電整合與視覺檢測，專注開發高穩定性的電池組裝產線。
+                        鴻翔機械有限公司成立於台灣，專注於自動化電池組裝機械的研發與製造。我們服務鋰電池、儲能電池及電動車電池模組廠，提供客製化產線規劃與設備交鑰匙工程。
                     </p>
                     <p class="text-gray-600 leading-relaxed mb-8">
-                        面對全球能源轉型，我們堅持「務實、創新、高效」的工業精神，從單機設備到整線自動化，皆嚴格把控每一個工程細節，確保客戶獲得具備最高 C/P 值與長期穩定性的工業級解決方案。
+                        從概念設計、3D 模擬驗證到廠內 FAT 測試，每一階段皆有完整文件與品質紀錄，確保設備符合國際安全標準與客戶製程需求。
                     </p>
+                    
                     <ul class="space-y-4">
                         <li class="flex items-center gap-3">
                             <div class="w-8 h-8 rounded bg-industrial-light flex items-center justify-center text-industrial-accent">
@@ -255,9 +235,8 @@
                 
                 <div class="relative gs-fade-left">
                     <div class="absolute inset-0 bg-industrial-900 translate-x-4 translate-y-4 rounded z-0"></div>
-                    <!-- 這裡已更新為正常載入的高畫質精密工業自動化圖片 -->
-                    <img src="https://images.unsplash.com/photo-1581092335397-9583eb92d232?q=80&w=2070&auto=format&fit=crop" alt="精密機械工程與自動化設備" class="relative z-10 w-full h-auto rounded shadow-xl filter grayscale contrast-125 hover:grayscale-0 transition-all duration-700" />
-                    <!-- Tech overlay -->
+                    <!-- 替換為有效且符合自動化組裝流水線的高畫質圖片 -->
+                    <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=2070&auto=format&fit=crop" alt="電池自動化流水線與機械臂" class="relative z-10 w-full h-auto rounded shadow-xl filter grayscale contrast-125 hover:grayscale-0 transition-all duration-700" />
                     <div class="absolute bottom-10 left-[-20px] bg-white p-4 shadow-2xl rounded z-20 border-l-4 border-industrial-accent flex items-center gap-4">
                         <iconify-icon icon="mdi:memory" class="text-4xl text-industrial-700"></iconify-icon>
                         <div>
@@ -272,7 +251,6 @@
 
     <!-- Products & Services Section -->
     <section id="products" class="py-24 bg-industrial-900 relative overflow-hidden">
-        <!-- ThreeJS Background Container -->
         <div id="three-canvas"></div>
         
         <div class="max-w-7xl mx-auto px-6 content-layer">
@@ -287,13 +265,13 @@
                 <div class="glass-card rounded-lg overflow-hidden group gs-fade-up">
                     <div class="relative h-60 overflow-hidden">
                         <div class="absolute inset-0 bg-industrial-900/40 group-hover:bg-transparent transition-colors z-10"></div>
-                        <img src="https://images.unsplash.com/photo-1563770660941-20978e870e26?q=80&w=2070&auto=format&fit=crop" alt="電池芯分選機" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
+                        <img src="https://images.unsplash.com/photo-1563770660941-20978e870e26?q=80&w=2070&auto=format&fit=crop" alt="電池自動分選機" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
                         <div class="absolute top-4 right-4 z-20 bg-industrial-accent text-white text-xs font-bold px-2 py-1 rounded">HX-S Series</div>
                     </div>
                     <div class="p-6">
                         <h4 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
                             <iconify-icon icon="mdi:battery-charging-high" class="text-industrial-accent"></iconify-icon>
-                            高速電池芯分選機
+                            電池自動分選機
                         </h4>
                         <p class="text-gray-400 text-sm mb-4 line-clamp-3">
                             針對圓柱型或方形電芯，進行精準的內阻與電壓測試，並自動化分檔。配備高精度視覺定位系統，分選速度達 120 PPM，確保後續模組組裝的一致性。
@@ -312,13 +290,13 @@
                 <div class="glass-card rounded-lg overflow-hidden group gs-fade-up delay-100">
                     <div class="relative h-60 overflow-hidden">
                         <div class="absolute inset-0 bg-industrial-900/40 group-hover:bg-transparent transition-colors z-10"></div>
-                        <img src="https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?q=80&w=2070&auto=format&fit=crop" alt="自動點焊系統" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
+                        <img src="https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?q=80&w=2070&auto=format&fit=crop" alt="電池自動點焊機" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
                         <div class="absolute top-4 right-4 z-20 bg-industrial-accent text-white text-xs font-bold px-2 py-1 rounded">HX-W Series</div>
                     </div>
                     <div class="p-6">
                         <h4 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
                             <iconify-icon icon="mdi:laser-pointer" class="text-industrial-accent"></iconify-icon>
-                            雷射/電阻自動點焊系統
+                            電池自動點焊機
                         </h4>
                         <p class="text-gray-400 text-sm mb-4 line-clamp-3">
                             支援龍門式或機械臂架構，搭載高能量穩定型雷射源或精密電阻焊機。具備焊後拉力自動抽檢與熔深視覺檢測，確保每一道焊點的安全與導電率。
@@ -337,13 +315,13 @@
                 <div class="glass-card rounded-lg overflow-hidden group gs-fade-up delay-200">
                     <div class="relative h-60 overflow-hidden">
                         <div class="absolute inset-0 bg-industrial-900/40 group-hover:bg-transparent transition-colors z-10"></div>
-                        <img src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?q=80&w=2070&auto=format&fit=crop" alt="模組組裝線" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
+                        <img src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?q=80&w=2070&auto=format&fit=crop" alt="模組化應用套件" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
                         <div class="absolute top-4 right-4 z-20 bg-industrial-accent text-white text-xs font-bold px-2 py-1 rounded">HX-A Series</div>
                     </div>
                     <div class="p-6">
                         <h4 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
-                            <iconify-icon icon="mdi:conveyor-belt" class="text-industrial-accent"></iconify-icon>
-                            電池模組全自動組裝線
+                            <iconify-icon icon="mdi:puzzle" class="text-industrial-accent"></iconify-icon>
+                            模組化應用套件
                         </h4>
                         <p class="text-gray-400 text-sm mb-4 line-clamp-3">
                             整合入殼、擠壓、絕緣測試、雷射焊接、BMS安裝及EOL測試的交鑰匙(Turnkey)工程。系統內建 MES 數據採集介面，實現生產履歷全溯源。
@@ -378,21 +356,21 @@
                                 <iconify-icon icon="mdi:map-marker" class="text-industrial-accent text-xl mt-1"></iconify-icon>
                                 <div>
                                     <div class="font-bold text-sm">企業總部</div>
-                                    <div class="text-gray-400 text-sm">台灣桃園市桃園區工業路 168 號</div>
+                                    <div class="text-gray-400 text-sm">台灣桃園市桃園區榮華街31號</div>
                                 </div>
                             </div>
                             <div class="flex items-start gap-4">
                                 <iconify-icon icon="mdi:phone" class="text-industrial-accent text-xl mt-1"></iconify-icon>
                                 <div>
                                     <div class="font-bold text-sm">業務專線</div>
-                                    <div class="text-gray-400 text-sm font-tech">+886 3 123 4567</div>
+                                    <div class="text-gray-400 text-sm font-tech">03-3669809</div>
                                 </div>
                             </div>
                             <div class="flex items-start gap-4">
                                 <iconify-icon icon="mdi:email" class="text-industrial-accent text-xl mt-1"></iconify-icon>
                                 <div>
                                     <div class="font-bold text-sm">技術支援與報價</div>
-                                    <div class="text-gray-400 text-sm font-tech">sales@hongxiang-machinery.com.tw</div>
+                                    <div class="text-gray-400 text-sm font-tech">su0930135475@gmail.com</div>
                                 </div>
                             </div>
                         </div>
@@ -461,7 +439,6 @@
 
     <!-- Scripts for Interactions & Animations -->
     <script>
-        // --- 1. Navbar Scroll Effect ---
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
             if (window.scrollY > 50) {
@@ -473,89 +450,59 @@
             }
         });
 
-        // --- 2. GSAP Scroll Animations ---
         gsap.registerPlugin(ScrollTrigger);
         
-        // Hero Reveal
         gsap.fromTo(".gs-reveal", 
             { y: 30, opacity: 0 }, 
             { y: 0, opacity: 1, duration: 1, stagger: 0.15, ease: "power3.out" }
         );
 
-        // General Fade Up
         gsap.utils.toArray('.gs-fade-up').forEach(element => {
             gsap.fromTo(element, 
                 { y: 50, opacity: 0 },
                 {
-                    scrollTrigger: {
-                        trigger: element,
-                        start: "top 85%",
-                    },
-                    y: 0,
-                    opacity: 1,
-                    duration: 0.8,
-                    ease: "power2.out"
+                    scrollTrigger: { trigger: element, start: "top 85%" },
+                    y: 0, opacity: 1, duration: 0.8, ease: "power2.out"
                 }
             );
         });
 
-        // General Fade Left
         gsap.utils.toArray('.gs-fade-left').forEach(element => {
             gsap.fromTo(element, 
                 { x: 50, opacity: 0 },
                 {
-                    scrollTrigger: {
-                        trigger: element,
-                        start: "top 85%",
-                    },
-                    x: 0,
-                    opacity: 1,
-                    duration: 1,
-                    ease: "power2.out"
+                    scrollTrigger: { trigger: element, start: "top 85%" },
+                    x: 0, opacity: 1, duration: 1, ease: "power2.out"
                 }
             );
         });
 
-        // --- 3. Anime.js for SVG in Hero ---
-        // Rotate outer gear slowly
         anime({
-            targets: '.gear-outer',
-            rotate: 360,
-            duration: 20000,
-            easing: 'linear',
-            loop: true,
-            transformOrigin: '400px 400px'
+            targets: '.gear-outer', rotate: 360, duration: 20000,
+            easing: 'linear', loop: true, transformOrigin: '400px 400px'
         });
 
-        // Pulse lines simulating energy flow
         anime({
             targets: '.pulse-line',
             strokeDashoffset: [anime.setDashoffset, 0],
-            easing: 'easeInOutSine',
-            duration: 1500,
+            easing: 'easeInOutSine', duration: 1500,
             delay: function(el, i) { return i * 250 },
-            direction: 'alternate',
-            loop: true
+            direction: 'alternate', loop: true
         });
 
-        // --- 4. Three.js Background for Products Section ---
         const initThreeJS = () => {
             const container = document.getElementById('three-canvas');
             if (!container) return;
 
             const scene = new THREE.Scene();
-            
-            // Camera
             const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
             camera.position.z = 30;
 
-            // Renderer
             const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
             renderer.setSize(container.clientWidth, container.clientHeight);
             renderer.setPixelRatio(window.devicePixelRatio);
             container.appendChild(renderer.domElement);
 
-            // Particles Structure to mimic industrial data network
             const geometry = new THREE.BufferGeometry();
             const particlesCount = 300;
             const posArray = new Float32Array(particlesCount * 3);
@@ -567,26 +514,19 @@
             geometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
             
             const material = new THREE.PointsMaterial({
-                size: 0.2,
-                color: 0x0284c7, // Brand blue
-                transparent: true,
-                opacity: 0.6,
-                blending: THREE.AdditiveBlending
+                size: 0.2, color: 0x0284c7, transparent: true,
+                opacity: 0.6, blending: THREE.AdditiveBlending
             });
             
             const particlesMesh = new THREE.Points(geometry, material);
             scene.add(particlesMesh);
 
-            // Lines connecting nearby particles (Wireframe mesh look)
             const materialLine = new THREE.LineBasicMaterial({
-                color: 0x1e293b,
-                transparent: true,
-                opacity: 0.3
+                color: 0x1e293b, transparent: true, opacity: 0.3
             });
             const lineMesh = new THREE.LineSegments(geometry, materialLine);
             scene.add(lineMesh);
 
-            // Animation Loop
             let mouseX = 0;
             let mouseY = 0;
 
@@ -598,7 +538,6 @@
                 lineMesh.rotation.y += 0.001;
                 lineMesh.rotation.x += 0.0005;
 
-                // Subtle mouse parallax
                 particlesMesh.rotation.x += mouseY * 0.00005;
                 particlesMesh.rotation.y += mouseX * 0.00005;
                 
@@ -606,13 +545,11 @@
             };
             animate();
 
-            // Track Mouse for parallax
             document.addEventListener('mousemove', (e) => {
                 mouseX = e.clientX - window.innerWidth / 2;
                 mouseY = e.clientY - window.innerHeight / 2;
             });
 
-            // Resize handle
             window.addEventListener('resize', () => {
                 camera.aspect = container.clientWidth / container.clientHeight;
                 camera.updateProjectionMatrix();
@@ -620,13 +557,9 @@
             });
         };
 
-        // Initialize Three.js after DOM load
         window.addEventListener('DOMContentLoaded', initThreeJS);
 
-        // Mobile Menu toggle (Basic functionality)
         document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-            // In a full production env, add a modal menu here.
-            // For this single file, a simple alert or console log acts as placeholder.
             alert('Mobile menu toggled - To be implemented based on exact navigation links');
         });
 
