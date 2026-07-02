@@ -44,6 +44,8 @@
                 }
             }
         }
+
+        
     </script>
 
     <style>
@@ -91,6 +93,38 @@
         }
         
         .content-layer { position: relative; z-index: 10; }
+        /* ⬇️ 正確安插位置：請把這段直接複製貼在這邊 ⬇️ */
+        .slider-box {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .slider-content {
+            display: flex;
+            width: 400%;
+            height: 100%;
+            animation: rotateSlider 16s infinite;
+        }
+
+        .slider-content img {
+            width: 25%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes rotateSlider {
+            0%, 20%   { transform: translateX(0); }
+            25%, 45%  { transform: translateX(-25%); }
+            50%, 70%  { transform: translateX(-50%); }
+            75%, 95%  { transform: translateX(-75%); }
+            100%      { transform: translateX(0); }
+        }
+        /* ⬆️ 貼到這裡結束 ⬆️ */
     </style>
 </head>
 <body class="bg-industrial-light text-industrial-900 antialiased overflow-x-hidden selection:bg-industrial-accent selection:text-white">
@@ -127,9 +161,19 @@
     </nav>
 
     <!-- Hero Section -->
-    <header class="relative min-h-screen flex items-center justify-center bg-hero-pattern bg-cover bg-center bg-no-repeat bg-fixed pt-20">
+   <header class="relative min-h-screen flex items-center justify-center bg-industrial-900 pt-20">
         <!-- SVG Animation Layer -->
-        <div class="absolute inset-0 z-0 flex items-center justify-center opacity-20 overflow-hidden pointer-events-none">
+       <div class="slider-box">
+            <div class="slider-content">
+                <img src="https://images.unsplash.com/photo-1563770660941-20978e870e26?q=80&w=2070&auto=format&fit=crop" alt="設備圖 1">
+                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop" alt="設備圖 2">
+                <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=2070&auto=format&fit=crop" alt="設備圖 3">
+                <img src="https://images.unsplash.com/photo-1563770660941-20978e870e26?q=80&w=2070&auto=format&fit=crop" alt="設備圖 1 複本">
+            </div>
+            <div class="absolute inset-0 bg-industrial-900/75 z-10"></div>
+        </div>
+       <!-- SVG Animation Layer -->
+        <div class="absolute inset-0 z-10 flex items-center justify-center opacity-20 overflow-hidden pointer-events-none">
             <svg viewBox="0 0 800 800" class="w-full max-w-4xl opacity-50" id="hero-svg">
                 <g class="gear-outer" stroke="#ffffff" stroke-width="2" fill="none">
                     <circle cx="400" cy="400" r="300" stroke-dasharray="10 20" />
@@ -149,7 +193,7 @@
             </svg>
         </div>
 
-        <div class="max-w-7xl mx-auto px-6 relative z-10 w-full flex flex-col items-start">
+       <div class="max-w-7xl mx-auto px-6 relative z-20 w-full flex flex-col items-start">
             
             <!-- 全新設計的工程風格 Badge -->
             <div class="inline-flex items-center gap-3 px-4 py-1.5 bg-gradient-to-r from-industrial-800/90 to-industrial-900/90 border-l-4 border-industrial-accent backdrop-blur-sm shadow-[0_4px_15px_rgba(0,0,0,0.2)] mb-6 gs-reveal">
