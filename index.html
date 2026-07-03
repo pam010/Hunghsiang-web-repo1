@@ -550,8 +550,22 @@
 
         document.getElementById('mobile-menu-btn').addEventListener('click', function() {
             alert('Mobile menu toggled - To be implemented based on exact navigation links');
-        });
+            const mobileMenu = document.getElementById('mobile-menu');
+            const icon = this.querySelector('iconify-icon');
+        
+            // 切換 hidden（隱藏）與 flex（顯示）狀態
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+        
+            // 根據選單開關狀態，切換「三條槓 mdi:menu」與「叉叉 mdi:close」的圖示
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.setAttribute('icon', 'mdi:menu');
+            } else {
+                icon.setAttribute('icon', 'mdi:close');
+            }
+      });
 
-    </script>
+    // (選填) 如果你有原本控制 navbar 滾動變色的程式碼，可以繼續保留在下方
+</script>
 </body>
 </html>
