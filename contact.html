@@ -87,6 +87,11 @@
                 <iconify-icon icon="mdi:menu"></iconify-icon>
             </button>
         </div>
+              <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-industrial-900/95 backdrop-blur-md border-b border-white/10 shadow-2xl flex-col">
+             <a href="index.html" class="px-6 py-4 text-white bg-white/5 border-b border-white/5 text-sm font-medium">回首頁</a>
+             <a href="sorting_machine.html" class="px-6 py-4 text-gray-300 hover:text-white hover:bg-white/5 border-b border-white/5 text-sm font-medium">產品及服務</a>
+             <a href="contact.html" class="px-6 py-4 text-gray-300 hover:text-white hover:bg-white/5 text-sm font-medium">關於我們</a>
+              </div>
     </nav>
     
     <section id="map" class="py-24 pb-4 bg-industrial-light relative">
@@ -223,8 +228,21 @@
 
         // 手機版選單按鈕
         document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-            alert('Mobile menu toggled - To be implemented based on exact navigation links');
-        });
+            // ??? alert('Mobile menu toggled - To be implemented based on exact navigation links');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const icon = this.querySelector('iconify-icon');
+        
+            // 切換 hidden（隱藏）與 flex（顯示）狀態
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+        
+            // 根據選單開關狀態，切換「三條槓 mdi:menu」與「叉叉 mdi:close」的圖示
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.setAttribute('icon', 'mdi:menu');
+            } else {
+                icon.setAttribute('icon', 'mdi:close');
+            }
+      });
     </script>
 </body>
 </html>
