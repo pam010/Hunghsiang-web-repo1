@@ -423,6 +423,20 @@
             };
             animate();
 
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX - window.innerWidth / 2;
+                mouseY = e.clientY - window.innerHeight / 2;
+            });
+
+            window.addEventListener('resize', () => {
+                camera.aspect = container.clientWidth / container.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(container.clientWidth, container.clientHeight);
+            });
+        };
+
+            window.addEventListener('DOMContentLoaded', initThreeJS);
+
             document.getElementById('mobile-menu-btn').addEventListener('click', function() {
             // ??? alert('Mobile menu toggled - To be implemented based on exact navigation links');
             const mobileMenu = document.getElementById('mobile-menu');
