@@ -45,6 +45,8 @@
                 }
             }
         }
+
+        
     </script>
 
     <style>
@@ -92,6 +94,38 @@
         }
         
         .content-layer { position: relative; z-index: 10; }
+        /* ⬇️ 正確安插位置：請把這段直接複製貼在這邊 ⬇️ */
+        .slider-box {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .slider-content {
+            display: flex;
+            width: 400%;
+            height: 100%;
+            animation: rotateSlider 16s infinite;
+        }
+
+        .slider-content img {
+            width: 25%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes rotateSlider {
+            0%, 20%   { transform: translateX(0); }
+            25%, 45%  { transform: translateX(-25%); }
+            50%, 70%  { transform: translateX(-50%); }
+            75%, 95%  { transform: translateX(-75%); }
+            100%      { transform: translateX(0); }
+        }
+        /* ⬆️ 貼到這裡結束 ⬆️ */
     </style>
 </head>
 <body class="bg-industrial-light text-industrial-900 antialiased overflow-x-hidden selection:bg-industrial-accent selection:text-white">
@@ -100,37 +134,54 @@
 
     <!-- Navigation -->
     <nav class="fixed w-full z-40 top-0 transition-all duration-300" id="navbar">
-        <div class="absolute inset-0 bg-industrial-900/90 backdrop-blur-md border-b border-white/10 shadow-lg"></div>
-        <div class="max-w-7xl mx-auto px-6 py-4 relative flex justify-between items-center">
-            <a href="#" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 bg-industrial-accent rounded flex items-center justify-center text-white font-tech font-bold text-xl group-hover:bg-white group-hover:text-industrial-accent transition-colors">
-                    HX
-                </div>
-                <div>
-                    <h1 class="text-white font-bold text-xl tracking-wider">鴻翔機械有限公司</h1>
-                    <p class="text-industrial-accent text-xs font-tech tracking-widest">MACHINERY</p>
-                </div>
-            </a>
-            
-            <div class="hidden md:flex items-center gap-8">
-                <a href="#about" class="text-gray-300 hover:text-white text-sm font-medium transition-colors">關於我們</a>
-                <a href="sorting_machine.html" class="text-gray-300 hover:text-white text-sm font-medium transition-colors">產品及服務</a>
-                <a href="#contact" class="text-gray-300 hover:text-white text-sm font-medium transition-colors">聯絡我們</a>
-                <a href="#contact" class="px-5 py-2 bg-industrial-accent hover:bg-blue-600 text-white text-sm font-bold rounded transition-all shadow-[0_0_15px_rgba(2,132,199,0.4)] hover:shadow-[0_0_25px_rgba(2,132,199,0.6)]">
-                    取得規格書
-                </a>
+      <div class="absolute inset-0 bg-industrial-900/90 backdrop-blur-md border-b border-white/10 shadow-lg"></div>
+    
+      <div class="max-w-7xl mx-auto px-6 py-4 relative flex justify-between items-center">
+        <a href="index.html" class="flex items-center gap-3 group">
+            <div class="w-10 h-10 bg-industrial-accent rounded flex items-center justify-center text-white font-tech font-bold text-xl group-hover:bg-white group-hover:text-industrial-accent transition-colors">
+                HX
             </div>
+              <div>
+                <h1 class="text-white font-bold text-xl tracking-wider">鴻翔機械有限公司</h1>
+                <p class="text-industrial-accent text-xs font-tech tracking-widest">MACHINERY</p>
+              </div>
+        </a>
+        
+          <div class="hidden md:flex items-center gap-8">
+            <a href="index.html" class="text-white text-sm font-medium transition-colors">回首頁</a>
+            <a href="sorting_machine.html" class="text-gray-300 hover:text-white text-sm font-medium transition-colors">產品及服務</a>
+            <a href="contact.html" class="text-gray-300 hover:text-white text-sm font-medium transition-colors">關於我們</a>
+            <a href="#contact" class="px-5 py-2 bg-industrial-accent hover:bg-blue-600 text-white text-sm font-bold rounded transition-all shadow-[0_0_15px_rgba(2,132,199,0.4)] hover:shadow-[0_0_25px_rgba(2,132,199,0.6)]">
+                取得規格書
+            </a>
+          </div>
 
-            <button class="md:hidden text-white text-2xl" id="mobile-menu-btn">
-                <iconify-icon icon="mdi:menu"></iconify-icon>
-            </button>
-        </div>
+          <button class="md:hidden text-white text-2xl relative z-50 flex items-center" id="mobile-menu-btn">
+            <iconify-icon icon="mdi:menu"></iconify-icon>
+          </button>
+     </div>
+
+          <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-industrial-900/95 backdrop-blur-md border-b border-white/10 shadow-2xl flex-col">
+             <a href="index.html" class="px-6 py-4 text-white bg-white/5 border-b border-white/5 text-sm font-medium">回首頁</a>
+             <a href="sorting_machine.html" class="px-6 py-4 text-gray-300 hover:text-white hover:bg-white/5 border-b border-white/5 text-sm font-medium">產品及服務</a>
+             <a href="contact.html" class="px-6 py-4 text-gray-300 hover:text-white hover:bg-white/5 text-sm font-medium">關於我們</a>
+          </div>
     </nav>
 
     <!-- Hero Section -->
-    <header class="relative min-h-screen flex items-center justify-center bg-hero-pattern bg-cover bg-center bg-no-repeat bg-fixed pt-20">
+   <header class="relative min-h-screen flex items-center justify-center bg-industrial-900 pt-20">
         <!-- SVG Animation Layer -->
-        <div class="absolute inset-0 z-0 flex items-center justify-center opacity-20 overflow-hidden pointer-events-none">
+       <div class="slider-box">
+            <div class="slider-content">
+                <img src="image/battery_group.jpg" alt="電池組">                
+                <img src="image/battery_ecosystem.jpg" alt="電池生態系統">
+                <img src="image/solar_factor.jpg" alt="生產工廠">
+                <img src="image/battery_group.jpg" alt="電池組 複本">
+            </div>
+            <div class="absolute inset-0 bg-industrial-900/75 z-10"></div>
+        </div>
+       <!-- SVG Animation Layer -->
+        <div class="absolute inset-0 z-10 flex items-center justify-center opacity-20 overflow-hidden pointer-events-none">
             <svg viewBox="0 0 800 800" class="w-full max-w-4xl opacity-50" id="hero-svg">
                 <g class="gear-outer" stroke="#ffffff" stroke-width="2" fill="none">
                     <circle cx="400" cy="400" r="300" stroke-dasharray="10 20" />
@@ -150,7 +201,7 @@
             </svg>
         </div>
 
-        <div class="max-w-7xl mx-auto px-6 relative z-10 w-full flex flex-col items-start">
+       <div class="max-w-7xl mx-auto px-6 relative z-20 w-full flex flex-col items-start">
             
             <!-- 全新設計的工程風格 Badge -->
             <div class="inline-flex items-center gap-3 px-4 py-1.5 bg-gradient-to-r from-industrial-800/90 to-industrial-900/90 border-l-4 border-industrial-accent backdrop-blur-sm shadow-[0_4px_15px_rgba(0,0,0,0.2)] mb-6 gs-reveal">
@@ -499,9 +550,23 @@
         window.addEventListener('DOMContentLoaded', initThreeJS);
 
         document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-            alert('Mobile menu toggled - To be implemented based on exact navigation links');
-        });
+            // ??? alert('Mobile menu toggled - To be implemented based on exact navigation links');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const icon = this.querySelector('iconify-icon');
+        
+            // 切換 hidden（隱藏）與 flex（顯示）狀態
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+        
+            // 根據選單開關狀態，切換「三條槓 mdi:menu」與「叉叉 mdi:close」的圖示
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.setAttribute('icon', 'mdi:menu');
+            } else {
+                icon.setAttribute('icon', 'mdi:close');
+            }
+      });
 
-    </script>
+    // (選填) 如果你有原本控制 navbar 滾動變色的程式碼，可以繼續保留在下方
+</script>
 </body>
 </html>
