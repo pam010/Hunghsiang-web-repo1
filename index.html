@@ -4,8 +4,9 @@
     <meta name="google-site-verification" content="-2osdc7RNdmfBrKr_65AWAFbfthba9rK-V4sAn6qttE" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>鴻翔機械有限公司 | 專注規劃自動化電池組裝</title>
-    <meta name="description" content="鴻翔機械有限公司，深耕電池自動化十八年，專注規劃自動化電池組裝，提供嚴謹、高效的工業級交鑰匙工程。">
+    <title> 點焊熔接機 | 鴻翔機械有限公司 | 專注規劃自動化電池組裝 | 桃園市</title>
+    <meta name="description" content="鴻翔機械有限公司，規劃，設計，自動化電池點焊機組裝，深耕領域十五年，與多家上市櫃公司合作專案，投資金額超過5000萬以上。">
+    <link rel="canonical" href="https://www.hongxiang-taoyuan.com">
     
     <!-- Google Fonts: Noto Sans TC -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -133,31 +134,38 @@
 
     <!-- Navigation -->
     <nav class="fixed w-full z-40 top-0 transition-all duration-300" id="navbar">
-        <div class="absolute inset-0 bg-industrial-900/90 backdrop-blur-md border-b border-white/10 shadow-lg"></div>
-        <div class="max-w-7xl mx-auto px-6 py-4 relative flex justify-between items-center">
-            <a href="#" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 bg-industrial-accent rounded flex items-center justify-center text-white font-tech font-bold text-xl group-hover:bg-white group-hover:text-industrial-accent transition-colors">
-                    HX
-                </div>
-                <div>
-                    <h1 class="text-white font-bold text-xl tracking-wider">鴻翔機械有限公司</h1>
-                    <p class="text-industrial-accent text-xs font-tech tracking-widest">MACHINERY</p>
-                </div>
-            </a>
-            
-            <div class="hidden md:flex items-center gap-8">
-                <a href="#about" class="text-gray-300 hover:text-white text-sm font-medium transition-colors">關於我們</a>
-                <a href="sorting_machine.html" class="text-gray-300 hover:text-white text-sm font-medium transition-colors">產品及服務</a>
-                <a href="contact.html" class="text-gray-300 hover:text-white text-sm font-medium transition-colors">聯絡我們</a>
-                <a href="#contact" class="px-5 py-2 bg-industrial-accent hover:bg-blue-600 text-white text-sm font-bold rounded transition-all shadow-[0_0_15px_rgba(2,132,199,0.4)] hover:shadow-[0_0_25px_rgba(2,132,199,0.6)]">
-                    取得規格書
-                </a>
+      <div class="absolute inset-0 bg-industrial-900/90 backdrop-blur-md border-b border-white/10 shadow-lg"></div>
+    
+      <div class="max-w-7xl mx-auto px-6 py-4 relative flex justify-between items-center">
+        <a href="index.html" class="flex items-center gap-3 group">
+            <div class="w-10 h-10 bg-industrial-accent rounded flex items-center justify-center text-white font-tech font-bold text-xl group-hover:bg-white group-hover:text-industrial-accent transition-colors">
+                HX
             </div>
+              <div>
+                <h1 class="text-white font-bold text-xl tracking-wider">鴻翔機械有限公司</h1>
+                <p class="text-industrial-accent text-xs font-tech tracking-widest">MACHINERY</p>
+              </div>
+        </a>
+        
+          <div class="hidden md:flex items-center gap-8">
+            <a href="index.html" class="text-white text-sm font-medium transition-colors">回首頁</a>
+            <a href="sorting_machine.html" class="text-gray-300 hover:text-white text-sm font-medium transition-colors">產品及服務</a>
+            <a href="contact.html" class="text-gray-300 hover:text-white text-sm font-medium transition-colors">關於我們</a>
+            <a href="#contact" class="px-5 py-2 bg-industrial-accent hover:bg-blue-600 text-white text-sm font-bold rounded transition-all shadow-[0_0_15px_rgba(2,132,199,0.4)] hover:shadow-[0_0_25px_rgba(2,132,199,0.6)]">
+                取得規格書
+            </a>
+          </div>
 
-            <button class="md:hidden text-white text-2xl" id="mobile-menu-btn">
-                <iconify-icon icon="mdi:menu"></iconify-icon>
-            </button>
-        </div>
+          <button class="md:hidden text-white text-2xl relative z-50 flex items-center" id="mobile-menu-btn">
+            <iconify-icon icon="mdi:menu"></iconify-icon>
+          </button>
+     </div>
+
+          <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-industrial-900/95 backdrop-blur-md border-b border-white/10 shadow-2xl flex-col">
+             <a href="index.html" class="px-6 py-4 text-white bg-white/5 border-b border-white/5 text-sm font-medium">回首頁</a>
+             <a href="sorting_machine.html" class="px-6 py-4 text-gray-300 hover:text-white hover:bg-white/5 border-b border-white/5 text-sm font-medium">產品及服務</a>
+             <a href="contact.html" class="px-6 py-4 text-gray-300 hover:text-white hover:bg-white/5 text-sm font-medium">關於我們</a>
+          </div>
     </nav>
 
     <!-- Hero Section -->
@@ -542,9 +550,23 @@
         window.addEventListener('DOMContentLoaded', initThreeJS);
 
         document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-            alert('Mobile menu toggled - To be implemented based on exact navigation links');
-        });
+            // ??? alert('Mobile menu toggled - To be implemented based on exact navigation links');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const icon = this.querySelector('iconify-icon');
+        
+            // 切換 hidden（隱藏）與 flex（顯示）狀態
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+        
+            // 根據選單開關狀態，切換「三條槓 mdi:menu」與「叉叉 mdi:close」的圖示
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.setAttribute('icon', 'mdi:menu');
+            } else {
+                icon.setAttribute('icon', 'mdi:close');
+            }
+      });
 
-    </script>
+    // (選填) 如果你有原本控制 navbar 滾動變色的程式碼，可以繼續保留在下方
+</script>
 </body>
 </html>
