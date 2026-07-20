@@ -398,29 +398,34 @@
                 <!-- Form Side -->
                 <div class="lg:col-span-3 p-10 lg:p-14">
                     <h4 class="text-xl font-bold text-industrial-900 mb-8 border-b-2 border-industrial-accent pb-2 inline-block">技術與報價諮詢表單</h4>
-                    <form class="space-y-6" onsubmit="event.preventDefault(); alert('表單已送出，我們將盡快與您聯繫！');">
+                    <form id="enquiry-form" class="space-y-6" action="https://script.google.com/macros/s/AKfycbx--816oY6G-QqbMACrQi5_2_ZhmQ67eXzD4BOAw3LhD-xdjPnwlFdD_ZdclkRMyLfLZQ/exec" method="post" target="enquiry-response">
+                        <input type="hidden" name="source" value="網站首頁">
+                        <div class="absolute -left-[10000px] opacity-0" aria-hidden="true">
+                            <label for="website">請勿填寫此欄位</label>
+                            <input id="website" type="text" name="website" tabindex="-1" autocomplete="off">
+                        </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <label class="block text-xs font-bold text-gray-700 mb-2 uppercase">公司名稱</label>
-                                <input type="text" class="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-sm focus:outline-none focus:border-industrial-accent focus:ring-1 focus:ring-industrial-accent transition-colors" placeholder="請輸入貴公司名稱" required>
+                                <label for="company" class="block text-xs font-bold text-gray-700 mb-2 uppercase">公司名稱</label>
+                                <input id="company" name="company" type="text" autocomplete="organization" class="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-sm focus:outline-none focus:border-industrial-accent focus:ring-1 focus:ring-industrial-accent transition-colors" placeholder="請輸入貴公司名稱" required>
                             </div>
                             <div>
-                                <label class="block text-xs font-bold text-gray-700 mb-2 uppercase">聯絡人姓名</label>
-                                <input type="text" class="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-sm focus:outline-none focus:border-industrial-accent focus:ring-1 focus:ring-industrial-accent transition-colors" placeholder="請輸入您的姓名" required>
+                                <label for="contact-name" class="block text-xs font-bold text-gray-700 mb-2 uppercase">聯絡人姓名</label>
+                                <input id="contact-name" name="contactName" type="text" autocomplete="name" class="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-sm focus:outline-none focus:border-industrial-accent focus:ring-1 focus:ring-industrial-accent transition-colors" placeholder="請輸入您的姓名" required>
                             </div>
                             <div>
-                                <label class="block text-xs font-bold text-gray-700 mb-2 uppercase">聯絡電話</label>
-                                <input type="tel" class="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-sm focus:outline-none focus:border-industrial-accent focus:ring-1 focus:ring-industrial-accent transition-colors" placeholder="分機或手機號碼" required>
+                                <label for="phone" class="block text-xs font-bold text-gray-700 mb-2 uppercase">聯絡電話</label>
+                                <input id="phone" name="phone" type="tel" autocomplete="tel" class="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-sm focus:outline-none focus:border-industrial-accent focus:ring-1 focus:ring-industrial-accent transition-colors" placeholder="分機或手機號碼" required>
                             </div>
                             <div>
-                                <label class="block text-xs font-bold text-gray-700 mb-2 uppercase">電子信箱</label>
-                                <input type="email" class="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-sm focus:outline-none focus:border-industrial-accent focus:ring-1 focus:ring-industrial-accent transition-colors" placeholder="name@company.com" required>
+                                <label for="email" class="block text-xs font-bold text-gray-700 mb-2 uppercase">電子信箱</label>
+                                <input id="email" name="email" type="email" autocomplete="email" class="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-sm focus:outline-none focus:border-industrial-accent focus:ring-1 focus:ring-industrial-accent transition-colors" placeholder="name@company.com" required>
                             </div>
                         </div>
                         
                         <div>
-                            <label class="block text-xs font-bold text-gray-700 mb-2 uppercase">需求類別</label>
-                            <select class="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-sm focus:outline-none focus:border-industrial-accent focus:ring-1 focus:ring-industrial-accent transition-colors">
+                            <label for="inquiry-type" class="block text-xs font-bold text-gray-700 mb-2 uppercase">需求類別</label>
+                            <select id="inquiry-type" name="inquiryType" class="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-sm focus:outline-none focus:border-industrial-accent focus:ring-1 focus:ring-industrial-accent transition-colors">
                                 <option>索取標準機型規格書</option>
                                 <option>客製化產線規劃評估</option>
                                 <option>設備售後維修與保養</option>
@@ -429,15 +434,18 @@
                         </div>
 
                         <div>
-                            <label class="block text-xs font-bold text-gray-700 mb-2 uppercase">詳細說明 (選填)</label>
-                            <textarea rows="4" class="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-sm focus:outline-none focus:border-industrial-accent focus:ring-1 focus:ring-industrial-accent transition-colors resize-none" placeholder="請簡述您的電池規格、預計產能或遭遇的製程痛點..."></textarea>
+                            <label for="message" class="block text-xs font-bold text-gray-700 mb-2 uppercase">詳細說明 (選填)</label>
+                            <textarea id="message" name="message" rows="4" class="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-sm focus:outline-none focus:border-industrial-accent focus:ring-1 focus:ring-industrial-accent transition-colors resize-none" placeholder="請簡述您的電池規格、預計產能或遭遇的製程痛點..."></textarea>
                         </div>
                         
                         <button type="submit" class="w-full bg-industrial-900 hover:bg-industrial-800 text-white font-bold py-4 rounded transition-colors flex items-center justify-center gap-2">
-                            送出評估需求
+                            <span>送出評估需求</span>
                             <iconify-icon icon="mdi:send"></iconify-icon>
                         </button>
+                        <p id="enquiry-status" class="min-h-6 text-sm text-gray-600" role="status" aria-live="polite"></p>
+                        <p class="text-xs text-gray-500 leading-relaxed">送出後，我們只會使用您提供的資料回覆這次詢問與後續服務聯繫。</p>
                     </form>
+                    <iframe id="enquiry-response" name="enquiry-response" title="表單送出結果" class="hidden" tabindex="-1"></iframe>
                 </div>
             </div>
         </div>
@@ -597,6 +605,31 @@
                 icon.setAttribute('icon', 'mdi:close');
             }
       });
+
+        const enquiryForm = document.getElementById('enquiry-form');
+        const enquiryFrame = document.getElementById('enquiry-response');
+        const enquiryStatus = document.getElementById('enquiry-status');
+        const enquirySubmitButton = enquiryForm?.querySelector('button[type="submit"]');
+        const enquirySubmitText = enquirySubmitButton?.querySelector('span');
+        let enquirySubmitted = false;
+
+        enquiryForm?.addEventListener('submit', () => {
+            enquirySubmitted = true;
+            enquiryStatus.textContent = '正在送出，請稍候…';
+            enquirySubmitButton.disabled = true;
+            enquirySubmitButton.classList.add('opacity-70', 'cursor-wait');
+            enquirySubmitText.textContent = '送出中…';
+        });
+
+        enquiryFrame?.addEventListener('load', () => {
+            if (!enquirySubmitted) return;
+            enquirySubmitted = false;
+            enquiryForm.reset();
+            enquiryStatus.textContent = '已收到您的詢問，鴻翔團隊將盡快與您聯繫。';
+            enquirySubmitButton.disabled = false;
+            enquirySubmitButton.classList.remove('opacity-70', 'cursor-wait');
+            enquirySubmitText.textContent = '送出評估需求';
+        });
 
     // (選填) 如果你有原本控制 navbar 滾動變色的程式碼，可以繼續保留在下方
 </script>
