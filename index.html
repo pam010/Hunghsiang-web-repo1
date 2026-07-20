@@ -189,7 +189,7 @@
             </a>
           </div>
 
-          <button class="md:hidden text-white text-2xl relative z-50 flex items-center" id="mobile-menu-btn">
+          <button type="button" class="md:hidden text-white text-2xl relative z-50 flex min-h-11 min-w-11 items-center justify-center" id="mobile-menu-btn" aria-label="開啟選單" aria-expanded="false" aria-controls="mobile-menu">
             <iconify-icon icon="mdi:menu"></iconify-icon>
           </button>
      </div>
@@ -300,7 +300,7 @@
                             <li class="flex justify-between"><span>分選能力:</span> <span class="text-white">18650 平均 3,200 顆／小時</span></li>
                             <li class="flex justify-between"><span>適用規格:</span> <span class="text-white">18650, 21700, (客製)</span></li>
                         </ul>
-                        <a href="battery-cell-sorting-machine.html" class="inline-flex items-center gap-2 text-industrial-accent hover:text-white text-sm font-bold transition-colors">
+                        <a href="battery-cell-sorting-machine.html" class="inline-flex min-h-11 items-center gap-2 py-2 text-industrial-accent hover:text-white text-sm font-bold transition-colors">
                             查看詳細規格 <iconify-icon icon="mdi:arrow-right"></iconify-icon>
                         </a>
                     </div>
@@ -324,7 +324,7 @@
                             <li class="flex justify-between"><span>治具行程:</span> <span class="text-white">1,000 × 350 mm</span></li>
                             <li class="flex justify-between"><span>點焊速度:</span> <span class="text-white">最快平均 1.8 秒／顆</span></li>
                         </ul>
-                        <a href="automatic-battery-spot-welding-machine.html" class="inline-flex items-center gap-2 text-industrial-accent hover:text-white text-sm font-bold transition-colors">
+                        <a href="automatic-battery-spot-welding-machine.html" class="inline-flex min-h-11 items-center gap-2 py-2 text-industrial-accent hover:text-white text-sm font-bold transition-colors">
                             查看詳細規格 <iconify-icon icon="mdi:arrow-right"></iconify-icon>
                         </a>
                     </div>
@@ -348,7 +348,7 @@
                             <li class="flex justify-between"><span>治具行程:</span> <span class="text-white">800 × 400 mm</span></li>
                             <li class="flex justify-between"><span>點焊速度:</span> <span class="text-white">最快平均 1.2 秒／顆</span></li>
                         </ul>
-                        <a href="automatic-battery-spot-welding-machine.html" class="inline-flex items-center gap-2 text-industrial-accent hover:text-white text-sm font-bold transition-colors">
+                        <a href="automatic-battery-spot-welding-machine.html" class="inline-flex min-h-11 items-center gap-2 py-2 text-industrial-accent hover:text-white text-sm font-bold transition-colors">
                             查看詳細規格 <iconify-icon icon="mdi:arrow-right"></iconify-icon>
                         </a>
                     </div>
@@ -380,7 +380,7 @@
                                 <iconify-icon icon="mdi:phone" class="text-industrial-accent text-xl mt-1"></iconify-icon>
                                 <div>
                                     <div class="font-bold text-sm">業務專線</div>
-                                    <div class="text-gray-400 text-sm font-tech">市話:03-3695689</div>
+                                    <a href="tel:+88633695689" class="inline-flex min-h-11 items-center py-2 text-sm font-tech text-gray-400 hover:text-white">市話:03-3695689</a>
                                     <div class="text-gray-400 text-sm font-tech">傳真:03-3698009</div>
                                 </div>
                             </div>
@@ -388,7 +388,7 @@
                                 <iconify-icon icon="mdi:email" class="text-industrial-accent text-xl mt-1"></iconify-icon>
                                 <div>
                                     <div class="font-bold text-sm">技術支援與報價</div>
-                                    <div class="text-gray-400 text-sm font-tech">hst2872@hxiang.com.tw</div>
+                                    <a href="mailto:hst2872@hxiang.com.tw" class="inline-flex min-h-11 items-center py-2 text-sm font-tech text-gray-400 hover:text-white">hst2872@hxiang.com.tw</a>
                                 </div>
                             </div>
                         </div>
@@ -587,7 +587,11 @@
             mobileMenu.classList.toggle('flex');
         
             // 根據選單開關狀態，切換「三條槓 mdi:menu」與「叉叉 mdi:close」的圖示
-            if (mobileMenu.classList.contains('hidden')) {
+            const isOpen = !mobileMenu.classList.contains('hidden');
+            this.setAttribute('aria-expanded', String(isOpen));
+            this.setAttribute('aria-label', isOpen ? '關閉選單' : '開啟選單');
+
+            if (!isOpen) {
                 icon.setAttribute('icon', 'mdi:menu');
             } else {
                 icon.setAttribute('icon', 'mdi:close');

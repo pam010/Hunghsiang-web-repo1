@@ -84,7 +84,7 @@
                 </a>
             </div>
 
-            <button class="md:hidden text-white text-2xl" id="mobile-menu-btn">
+            <button type="button" class="md:hidden text-white text-2xl flex min-h-11 min-w-11 items-center justify-center" id="mobile-menu-btn" aria-label="開啟選單" aria-expanded="false" aria-controls="mobile-menu">
                 <iconify-icon icon="mdi:menu"></iconify-icon>
             </button>
         </div>
@@ -128,7 +128,7 @@
                                 <iconify-icon icon="mdi:phone" class="text-industrial-accent text-xl mt-1"></iconify-icon>
                                 <div>
                                     <div class="font-bold text-sm">業務專線</div>
-                                    <div class="text-gray-400 text-sm font-tech">市話:03-3695689</div>
+                                    <a href="tel:+88633695689" class="inline-flex min-h-11 items-center py-2 text-sm font-tech text-gray-400 hover:text-white">市話:03-3695689</a>
                                     <div class="text-gray-400 text-sm font-tech">傳真:03-3698009</div>
                                 </div>
                             </div>
@@ -136,7 +136,7 @@
                                 <iconify-icon icon="mdi:email" class="text-industrial-accent text-xl mt-1"></iconify-icon>
                                 <div>
                                     <div class="font-bold text-sm">技術支援與報價</div>
-                                    <div class="text-gray-400 text-sm font-tech">hst2872@hxiang.com.tw</div>
+                                    <a href="mailto:hst2872@hxiang.com.tw" class="inline-flex min-h-11 items-center py-2 text-sm font-tech text-gray-400 hover:text-white">hst2872@hxiang.com.tw</a>
                                 </div>
                             </div>
                         </div>
@@ -241,7 +241,11 @@
             mobileMenu.classList.toggle('flex');
         
             // 根據選單開關狀態，切換「三條槓 mdi:menu」與「叉叉 mdi:close」的圖示
-            if (mobileMenu.classList.contains('hidden')) {
+            const isOpen = !mobileMenu.classList.contains('hidden');
+            this.setAttribute('aria-expanded', String(isOpen));
+            this.setAttribute('aria-label', isOpen ? '關閉選單' : '開啟選單');
+
+            if (!isOpen) {
                 icon.setAttribute('icon', 'mdi:menu');
             } else {
                 icon.setAttribute('icon', 'mdi:close');
