@@ -80,19 +80,21 @@
           <span class="block text-xs text-sky-300">桃園電池自動化設備整合</span>
         </span>
       </a>
-      <div class="hidden items-center gap-6 text-sm text-slate-200 md:flex">
+      <div class="hidden items-center gap-5 text-sm text-slate-200 lg:flex">
         <a href="/" class="inline-flex min-h-11 items-center hover:text-white">首頁</a>
         <a href="product-&-service.html" class="inline-flex min-h-11 items-center hover:text-white">產品及服務</a>
+        <a href="automatic-battery-spot-welding-machine.html" aria-current="page" class="inline-flex min-h-11 items-center font-bold text-sky-300">自動電池點焊機</a>
         <a href="battery-cell-sorting-machine.html" class="inline-flex min-h-11 items-center hover:text-white">電芯分選機</a>
         <a href="#enquiry" class="inline-flex min-h-11 items-center rounded bg-sky-600 px-5 font-bold text-white hover:bg-sky-500">索取規格</a>
       </div>
-      <button type="button" id="mobile-menu-btn" class="flex min-h-11 min-w-11 items-center justify-center rounded text-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300 md:hidden" aria-label="開啟選單" aria-expanded="false" aria-controls="mobile-menu">
+      <button type="button" id="mobile-menu-btn" class="flex min-h-11 min-w-11 items-center justify-center rounded text-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300 lg:hidden" aria-label="開啟選單" aria-expanded="false" aria-controls="mobile-menu">
         <span data-menu-icon aria-hidden="true">☰</span>
       </button>
     </nav>
-    <div id="mobile-menu" class="hidden border-t border-white/10 bg-slate-950 md:hidden" aria-hidden="true">
+    <div id="mobile-menu" class="hidden border-t border-white/10 bg-slate-950 lg:hidden" aria-hidden="true">
       <a href="/" class="flex min-h-11 items-center px-6 py-3">首頁</a>
       <a href="product-&-service.html" class="flex min-h-11 items-center border-t border-white/10 px-6 py-3">產品及服務</a>
+      <a href="automatic-battery-spot-welding-machine.html" aria-current="page" class="flex min-h-11 items-center border-t border-white/10 px-6 py-3 font-bold text-sky-300">自動電池點焊機</a>
       <a href="battery-cell-sorting-machine.html" class="flex min-h-11 items-center border-t border-white/10 px-6 py-3">電芯分選機</a>
       <a href="#enquiry" class="flex min-h-11 items-center border-t border-white/10 bg-sky-600 px-6 py-3 font-bold">索取規格與技術評估</a>
     </div>
@@ -121,14 +123,31 @@
     </section>
 
     <section aria-label="自動電池點焊設備展示" class="bg-slate-100 px-6 py-10 md:py-14">
-      <figure class="mx-auto max-w-5xl overflow-hidden rounded-2xl bg-white shadow-xl">
-        <div class="flex min-h-[320px] items-center justify-center p-4 sm:min-h-[440px] sm:p-8 lg:min-h-[560px]">
-          <picture>
-            <source type="image/webp" srcset="image/automatic-battery-spot-welding-machine-720.webp 720w, image/automatic-battery-spot-welding-machine.webp 1472w" sizes="(min-width: 1024px) 896px, calc(100vw - 80px)">
-            <img src="image/Dual-battery-spotwelder.png" alt="鴻翔雙軸電阻式自動電池點焊設備" width="1472" height="1956" fetchpriority="high" decoding="async" class="mx-auto max-h-[460px] w-auto max-w-full object-contain sm:max-h-[540px]">
-          </picture>
+      <figure data-machine-carousel aria-roledescription="carousel" aria-label="單軸與雙軸自動電池點焊設備" class="relative mx-auto max-w-5xl overflow-hidden rounded-2xl bg-white shadow-xl">
+        <div class="relative">
+          <div data-machine-slide data-label="單軸自動電池點焊機" role="group" aria-roledescription="slide" aria-label="第 1 張，共 2 張">
+            <div class="flex min-h-[320px] items-center justify-center p-4 sm:min-h-[440px] sm:p-8 lg:min-h-[560px]">
+              <picture>
+                <source type="image/webp" srcset="image/single-axis-battery-spot-welding-machine-720.webp 720w, image/single-axis-battery-spot-welding-machine.webp 768w" sizes="(min-width: 1024px) 896px, calc(100vw - 80px)">
+                <img src="image/battery welding machine .png" alt="鴻翔單軸自動電池點焊機" width="768" height="1024" fetchpriority="high" decoding="async" class="mx-auto max-h-[460px] w-auto max-w-full object-contain sm:max-h-[540px]">
+              </picture>
+            </div>
+          </div>
+          <div data-machine-slide data-label="雙軸自動電池點焊機" role="group" aria-roledescription="slide" aria-label="第 2 張，共 2 張" class="hidden" aria-hidden="true">
+            <div class="flex min-h-[320px] items-center justify-center p-4 sm:min-h-[440px] sm:p-8 lg:min-h-[560px]">
+              <picture>
+                <source type="image/webp" srcset="image/automatic-battery-spot-welding-machine-720.webp 720w, image/automatic-battery-spot-welding-machine.webp 1472w" sizes="(min-width: 1024px) 896px, calc(100vw - 80px)">
+                <img src="image/Dual-battery-spotwelder.png" alt="鴻翔雙軸電阻式自動電池點焊設備" width="1472" height="1956" loading="lazy" decoding="async" class="mx-auto max-h-[460px] w-auto max-w-full object-contain sm:max-h-[540px]">
+              </picture>
+            </div>
+          </div>
+          <button type="button" data-carousel-prev aria-label="顯示上一個機型" class="absolute left-3 top-1/2 z-10 grid min-h-12 min-w-12 -translate-y-1/2 place-items-center rounded-full bg-slate-950 text-2xl font-bold text-white shadow-lg transition hover:bg-sky-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 sm:left-6">←</button>
+          <button type="button" data-carousel-next aria-label="顯示下一個機型" class="absolute right-3 top-1/2 z-10 grid min-h-12 min-w-12 -translate-y-1/2 place-items-center rounded-full bg-slate-950 text-2xl font-bold text-white shadow-lg transition hover:bg-sky-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 sm:right-6">→</button>
         </div>
-        <figcaption class="border-t border-slate-200 px-6 py-4 text-center text-sm leading-6 text-slate-600">鴻翔雙軸電阻式自動電池點焊設備</figcaption>
+        <figcaption aria-live="polite" class="flex items-center justify-between gap-4 border-t border-slate-200 px-6 py-4 text-sm leading-6 text-slate-600">
+          <span data-carousel-label class="font-bold text-slate-900">單軸自動電池點焊機</span>
+          <span data-carousel-count class="shrink-0 font-tech font-bold text-sky-700">1 / 2</span>
+        </figcaption>
       </figure>
     </section>
 
