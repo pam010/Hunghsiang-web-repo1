@@ -45,48 +45,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
     
-    <!-- CDNs -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-
-    <!-- Tailwind Configuration -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"Noto Sans TC"', 'sans-serif'],
-                        tech: ['Rajdhani', 'sans-serif'],
-                    },
-                    colors: {
-                        industrial: {
-                            900: '#0f172a',
-                            800: '#1e293b',
-                            700: '#334155',
-                            accent: '#0284c7',
-                            light: '#f8fafc',
-                        }
-                    },
-                    backgroundImage: {
-                        'hero-pattern': "linear-gradient(to right bottom, rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.7)), url('https://images.unsplash.com/photo-1563770660941-20978e870e26?q=80&w=2070&auto=format&fit=crop')",
-                    }
-                }
-            }
-        }
-
-        
-    </script>
+    <link rel="stylesheet" href="site.css">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js" defer></script>
 
     <style>
         .noise-bg {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
+            width: 100%;
             height: 100vh;
             pointer-events: none;
             z-index: 50;
@@ -114,19 +81,13 @@
         ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #0284c7; }
 
-        #three-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            opacity: 0.4;
-            pointer-events: none;
-        }
-        
         .content-layer { position: relative; z-index: 10; }
-        /* ⬇️ 正確安插位置：請把這段直接複製貼在這邊 ⬇️ */
+
+        .deferred-section {
+            content-visibility: auto;
+            contain-intrinsic-size: 900px;
+        }
+
         .slider-box {
             position: absolute;
             top: 0;
@@ -157,15 +118,59 @@
             75%, 95%  { transform: translateX(-75%); }
             100%      { transform: translateX(0); }
         }
-        /* ⬆️ 貼到這裡結束 ⬆️ */
+
+        .gear-outer {
+            transform-origin: 400px 400px;
+            animation: rotateGear 20s linear infinite;
+        }
+
+        .pulse-line {
+            stroke-dasharray: 8 8;
+            animation: pulseLine 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes rotateGear {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulseLine {
+            from { stroke-dashoffset: 32; opacity: 0.55; }
+            to { stroke-dashoffset: 0; opacity: 1; }
+        }
+
+        :focus-visible {
+            outline: 3px solid #38bdf8;
+            outline-offset: 3px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+            .slider-content { transform: translateX(0) !important; }
+            .gs-reveal,
+            .gs-fade-up,
+            .gs-fade-left {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-industrial-light text-industrial-900 antialiased overflow-x-hidden selection:bg-industrial-accent selection:text-white">
 
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-white focus:px-4 focus:py-3 focus:font-bold focus:text-industrial-900">
+        跳至主要內容
+    </a>
+
     <div class="noise-bg"></div>
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-40 top-0 transition-all duration-300" id="navbar">
+    <nav class="fixed w-full z-40 top-0 transition-all duration-300" id="navbar" aria-label="主要導覽">
       <div class="absolute inset-0 bg-industrial-900/90 backdrop-blur-md border-b border-white/10 shadow-lg"></div>
     
       <div class="max-w-7xl mx-auto px-6 py-4 relative flex justify-between items-center">
@@ -174,8 +179,8 @@
                 HX
             </div>
               <div>
-                <snap class="text-white font-bold text-xl tracking-wider">鴻翔機械有限公司</snap>
-                <span class="block text-sm md:text-base text-industrial-accent font-medium tracking-widest uppercase ">桃園專業點焊熔接機設備專家</span>
+                <span class="text-white font-bold text-xl tracking-wider">鴻翔機械有限公司</span>
+                <span class="block text-sm md:text-base text-industrial-accent font-medium tracking-wider">桃園電池自動化設備整合</span>
                 <p class="text-industrial-accent text-xs font-tech tracking-widest">Hongxiang Machine</p>
               </div>
         </a>
@@ -185,7 +190,7 @@
             <a href="product-&-service.html" class="text-gray-300 hover:text-white text-sm font-medium transition-colors">產品及服務</a>
             <a href="contact.html" class="text-gray-300 hover:text-white text-sm font-medium transition-colors">關於我們</a>
             <a href="#contact" class="px-5 py-2 bg-industrial-accent hover:bg-blue-600 text-white text-sm font-bold rounded transition-all shadow-[0_0_15px_rgba(2,132,199,0.4)] hover:shadow-[0_0_25px_rgba(2,132,199,0.6)]">
-                取得規格書
+                索取規格
             </a>
           </div>
 
@@ -194,28 +199,30 @@
           </button>
      </div>
 
-          <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-industrial-900/95 backdrop-blur-md border-b border-white/10 shadow-2xl flex-col">
+          <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-industrial-900/95 backdrop-blur-md border-b border-white/10 shadow-2xl flex-col" aria-hidden="true">
              <a href="/" class="px-6 py-4 text-white bg-white/5 border-b border-white/5 text-sm font-medium">回首頁</a>
              <a href="product-&-service.html" class="px-6 py-4 text-gray-300 hover:text-white hover:bg-white/5 border-b border-white/5 text-sm font-medium">產品及服務</a>
              <a href="contact.html" class="px-6 py-4 text-gray-300 hover:text-white hover:bg-white/5 text-sm font-medium">關於我們</a>
+             <a href="#contact" class="px-6 py-4 bg-industrial-accent text-white text-sm font-bold">索取規格與技術評估</a>
           </div>
     </nav>
 
     <!-- Hero Section -->
+    <main id="main-content">
    <header class="relative min-h-screen flex items-center justify-center bg-industrial-900 pt-20">
         <!-- SVG Animation Layer -->
        <div class="slider-box">
             <div class="slider-content">
-                <img src="image/battery_group.jpg" alt="電池組">                
-                <img src="image/battery_ecosystem.jpg" alt="電池生態系統">
-                <img src="image/solar_factor.jpg" alt="生產工廠">
-                <img src="image/battery_group.jpg" alt="電池組 複本">
+                <img src="image/battery_group.jpg" alt="" width="2048" height="1152" fetchpriority="high">
+                <img src="image/battery_ecosystem.jpg" alt="" width="2048" height="1061">
+                <img src="image/solar_factor.jpg" alt="" width="1550" height="872">
+                <img src="image/battery_group.jpg" alt="" width="2048" height="1152">
             </div>
             <div class="absolute inset-0 bg-industrial-900/75 z-10"></div>
         </div>
        <!-- SVG Animation Layer -->
         <div class="absolute inset-0 z-10 flex items-center justify-center opacity-20 overflow-hidden pointer-events-none">
-            <svg viewBox="0 0 800 800" class="w-full max-w-4xl opacity-50" id="hero-svg">
+            <svg viewBox="0 0 800 800" class="w-full max-w-4xl opacity-50" id="hero-svg" aria-hidden="true">
                 <g class="gear-outer" stroke="#ffffff" stroke-width="2" fill="none">
                     <circle cx="400" cy="400" r="300" stroke-dasharray="10 20" />
                     <circle cx="400" cy="400" r="280" />
@@ -234,89 +241,78 @@
             </svg>
         </div>
 
-       <div class="max-w-7xl mx-auto px-6 relative z-20 w-full flex flex-col items-start">           
-            
-            <h1 class="text-5xl md:text-7xl font-black text-white leading-tight md:leading-normal mb-6 gs-reveal max-w-4xl py-2">專注規劃 <br />
-                <span class="text-[#38bdf8] drop-shadow-lg">自動化電池組裝</span>
+       <div class="max-w-7xl mx-auto px-6 relative z-20 w-full flex flex-col items-start">
+
+            <h1 class="text-4xl md:text-7xl font-black text-white leading-tight md:leading-normal mb-6 gs-reveal max-w-5xl py-2">桃園自動電池點焊機<br />
+                <span class="text-[#38bdf8] drop-shadow-lg">與電芯分選設備</span>
             </h1>
-            
-            <p class="text-gray-300 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed gs-reveal font-light border-l-4 border-industrial-accent pl-4">
-                以卓越工藝與極致效能，推動能源產業升級。我們提供高精度的自動化整合方案，大幅提升產線良率與產能，為您的企業打造具備全球競爭力的智慧工廠。
+
+            <p class="text-slate-200 text-lg md:text-xl max-w-3xl mb-10 leading-relaxed gs-reveal font-normal">
+                提供單軸、雙軸電阻式自動點焊機與 18650、21700 電芯分選機；可依治具、產能、進出料與資料需求規劃客製化設備。
             </p>
             
             <div class="flex flex-wrap gap-4 gs-reveal">
-                <a href="#products" class="px-8 py-4 bg-white text-industrial-900 font-bold rounded flex items-center gap-2 hover:bg-gray-100 transition-colors shadow-lg">探索解決方案
+                <a href="#products" class="px-8 py-4 bg-white text-industrial-900 font-bold rounded flex items-center gap-2 hover:bg-gray-100 transition-colors shadow-lg">查看設備
                     <iconify-icon icon="mdi:arrow-right" class="text-xl"></iconify-icon>
                 </a>
-                <a href="#contact" class="px-8 py-4 bg-industrial-accent hover:bg-blue-600 text-white font-bold rounded flex items-center gap-2 transition-all shadow-[0_0_15px_rgba(2,132,199,0.4)] hover:shadow-[0_0_25px_rgba(2,132,199,0.6)] border border-transparent">查閱技術規格
+                <a href="#contact" class="px-8 py-4 bg-industrial-accent hover:bg-blue-600 text-white font-bold rounded flex items-center gap-2 transition-colors shadow-lg border border-transparent">索取規格與技術評估
                     <iconify-icon icon="mdi:file-document-outline" class="text-xl"></iconify-icon>
                 </a>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20 border-t border-white/20 pt-8 w-full max-w-4xl gs-reveal">
-                <div>
-                    <div class="text-3xl font-tech font-bold text-white mb-1">0.01<span class="text-industrial-accent text-lg">mm</span></div>
-                    <div class="text-gray-400 text-xs font-medium">定位精度 (Positioning Accuracy)</div>
-                </div>
-                <div>
-                    <div class="text-3xl font-tech font-bold text-white mb-1">99.8<span class="text-industrial-accent text-lg">%</span></div>
-                    <div class="text-gray-400 text-xs font-medium">設備稼動率 (Equipment Availability)</div>
-                </div>
-                <div>
-                    <div class="text-3xl font-tech font-bold text-white mb-1">24<span class="text-industrial-accent text-lg">/7</span></div>
-                    <div class="text-gray-400 text-xs font-medium">連續運轉設計 (Continuous Operation)</div>
-                </div>
-            </div>
+            <ul class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-16 border-t border-white/20 pt-6 w-full max-w-5xl gs-reveal text-sm">
+                <li class="text-slate-200"><strong class="block text-white mb-1">電阻式自動點焊</strong>單軸、雙軸機型</li>
+                <li class="text-slate-200"><strong class="block text-white mb-1">電芯自動分選</strong>支援 18650、21700</li>
+                <li class="text-slate-200"><strong class="block text-white mb-1">客製化設備整合</strong>依治具、產能與製程規劃</li>
+            </ul>
         </div>
     </header>
 
     <!-- About Section -->
-    <section id="products" class="py-24 bg-industrial-900 relative overflow-hidden">
-        <div id="three-canvas"></div>
-        
+    <section id="products" class="deferred-section py-24 bg-industrial-900 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 content-layer">
             <div class="text-center mb-16 gs-fade-up">
-                <h6 class="text-industrial-accent font-bold tracking-widest text-sm mb-2 uppercase font-tech">Products & Services</h6>
-                <h3 class="text-3xl md:text-4xl font-black text-white mb-4">我們的產品及服務</h3>
+                <p class="text-industrial-accent font-bold tracking-widest text-sm mb-2 uppercase font-tech">Products & Services</p>
+                <h2 class="text-3xl md:text-4xl font-black text-white mb-4">自動電池設備與客製化服務</h2>
                 <p class="text-gray-400 max-w-2xl mx-auto">標準化機型與客製化專案並行，提供從電芯處理到模組封裝的完整自動化製程。</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="glass-card rounded-lg overflow-hidden group gs-fade-up">
+                <article class="glass-card rounded-lg overflow-hidden group gs-fade-up">
                     <div class="relative h-60 overflow-hidden">
                         <div class="absolute inset-0 bg-industrial-900/40 group-hover:bg-transparent transition-colors z-10"></div>
-                        <img src="image/battery sorting machie.png" alt="電池自動分選機" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
+                        <img src="image/battery sorting machie.png" alt="鴻翔 18650、21700 電芯自動分選機" width="1195" height="896" loading="lazy" decoding="async" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
                         <div class="absolute top-4 right-4 z-20 bg-industrial-accent text-white text-xs font-bold px-2 py-1 rounded">HX-S Series</div>
                     </div>
                     <div class="p-6">
-                        <h4 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
+                        <h3 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
                             <iconify-icon icon="mdi:battery-charging-high" class="text-industrial-accent"></iconify-icon>
-                            電池自動分選機
-                        </h4>
+                            電芯自動分選機
+                        </h3>
                         <p class="text-gray-400 text-sm mb-4 line-clamp-3">
                             適用 18650、21700 電芯，搭配內阻與電壓測試進行自動化分選；可依料盒與分選需求規劃。
                         </p>
                         <ul class="text-xs text-gray-500 space-y-2 mb-6 font-tech border-t border-white/10 pt-4">
                             <li class="flex justify-between"><span>分選能力:</span> <span class="text-white">18650 平均 3,200 顆／小時</span></li>
-                            <li class="flex justify-between"><span>適用規格:</span> <span class="text-white">18650, 21700, (客製)</span></li>
+                            <li class="flex justify-between"><span>適用規格:</span> <span class="text-white">18650、21700（可選配）</span></li>
                         </ul>
                         <a href="battery-cell-sorting-machine.html" class="inline-flex min-h-11 items-center gap-2 py-2 text-industrial-accent hover:text-white text-sm font-bold transition-colors">
                             查看詳細規格 <iconify-icon icon="mdi:arrow-right"></iconify-icon>
                         </a>
                     </div>
-                </div>
+                </article>
 
-                <div class="glass-card rounded-lg overflow-hidden group gs-fade-up delay-100">
+                <article class="glass-card rounded-lg overflow-hidden group gs-fade-up delay-100">
                     <div class="relative h-60 overflow-hidden">
                         <div class="absolute inset-0 bg-industrial-900/40 group-hover:bg-transparent transition-colors z-10"></div>
-                        <img src="image/battery welding machine .png" alt="電池自動點焊機" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
+                        <img src="image/battery welding machine .png" alt="鴻翔單軸電阻式自動電池點焊機" width="768" height="1024" loading="lazy" decoding="async" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
                         <div class="absolute top-4 right-4 z-20 bg-industrial-accent text-white text-xs font-bold px-2 py-1 rounded">HX-W Series</div>
                     </div>
                     <div class="p-6">
-                        <h4 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
+                        <h3 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
                             <iconify-icon icon="mdi:laser-pointer" class="text-industrial-accent"></iconify-icon>
-                            單軸-電池自動點焊機
-                        </h4>
+                             單軸電池自動點焊機
+                        </h3>
                         <p class="text-gray-400 text-sm mb-4 line-clamp-3">
                             電阻式自動點焊設備，可依程式設定焊接位置、能量與焊點數；適用 18650，21700 可選配。
                         </p>
@@ -328,19 +324,19 @@
                             查看詳細規格 <iconify-icon icon="mdi:arrow-right"></iconify-icon>
                         </a>
                     </div>
-                </div>
+                </article>
 
-                <div class="glass-card rounded-lg overflow-hidden group gs-fade-up delay-200">
+                <article class="glass-card rounded-lg overflow-hidden group gs-fade-up delay-200">
                     <div class="relative h-60 overflow-hidden">
                         <div class="absolute inset-0 bg-industrial-900/40 group-hover:bg-transparent transition-colors z-10"></div>
-                        <img src="image/Dual-battery-spotwelder.png" alt="雙軸電池自動點焊機" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
+                        <img src="image/Dual-battery-spotwelder.png" alt="鴻翔雙軸電阻式自動電池點焊機" width="1472" height="1956" loading="lazy" decoding="async" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
                         <div class="absolute top-4 right-4 z-20 bg-industrial-accent text-white text-xs font-bold px-2 py-1 rounded">HX-A Series</div>
                     </div>
                     <div class="p-6">
-                        <h4 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
+                        <h3 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
                             <iconify-icon icon="mdi:puzzle" class="text-industrial-accent"></iconify-icon>
-                            雙軸-電池自動點焊機
-                        </h4>
+                             雙軸電池自動點焊機
+                        </h3>
                         <p class="text-gray-400 text-sm mb-4 line-clamp-3">
                             雙軸電阻式自動點焊設備，支援自動補焊、旋轉針座與條碼啟動焊接程式等選配功能。
                         </p>
@@ -352,43 +348,51 @@
                             查看詳細規格 <iconify-icon icon="mdi:arrow-right"></iconify-icon>
                         </a>
                     </div>
-                </div>
+                </article>
             </div>
+            <p class="mt-8 text-center text-xs leading-relaxed text-slate-400">實際設備規格與速度會依電芯、材料、治具及製程條件而異。</p>
         </div>
     </section>
     <!-- Contact Section -->
-    <section id="contact" class="py-24 bg-industrial-light relative">
+    <section id="contact" class="deferred-section py-24 bg-industrial-light relative">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 bg-white shadow-2xl rounded-xl overflow-hidden border border-gray-100 gs-fade-up">
                 
                 <!-- Info Side -->
                 <div class="lg:col-span-2 bg-industrial-900 p-10 text-white relative overflow-hidden">
-                    <div class="absolute inset-0 opacity-10 bg-[url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center"></div>
+                    <div class="absolute inset-0 opacity-10 bg-[url('image/solar_factor.jpg')] bg-cover bg-center"></div>
                     <div class="relative z-10">
-                        <h4 class="text-2xl font-bold mb-6">聯絡我們</h4>
-                        <p class="text-gray-400 text-sm mb-10 leading-relaxed">需要技術評估、索取產品規格書，或有客製化設備需求？請留下您的聯絡資訊，我們的工程團隊將於 24 小時內與您聯繫。</p>
+                        <h2 class="text-2xl font-bold mb-6">聯絡鴻翔機械</h2>
+                        <p class="text-slate-300 text-sm mb-10 leading-relaxed">需要技術評估、產品規格書或客製化設備規劃？請提供您的設備需求，我們會在營業時間內盡快回覆。</p>
                         
                         <div class="space-y-6">
                             <div class="flex items-start gap-4">
                                 <iconify-icon icon="mdi:map-marker" class="text-industrial-accent text-xl mt-1"></iconify-icon>
                                 <div>
-                                    <div class="font-bold text-sm">企業總部</div>
-                                    <div class="text-gray-400 text-sm">台灣桃園市八德區高城九街23號</div>
+                                    <div class="font-bold text-sm">公司地址</div>
+                                    <div class="text-slate-300 text-sm">台灣桃園市八德區高城九街 23 號</div>
                                 </div>
                             </div>
                             <div class="flex items-start gap-4">
                                 <iconify-icon icon="mdi:phone" class="text-industrial-accent text-xl mt-1"></iconify-icon>
                                 <div>
                                     <div class="font-bold text-sm">業務專線</div>
-                                    <a href="tel:+88633695689" class="inline-flex min-h-11 items-center py-2 text-sm font-tech text-gray-400 hover:text-white">市話:03-3695689</a>
-                                    <div class="text-gray-400 text-sm font-tech">傳真:03-3698009</div>
+                                    <a href="tel:+88633695689" class="inline-flex min-h-11 items-center py-2 text-sm font-tech text-slate-300 hover:text-white">電話：03-369-5689</a>
+                                    <div class="text-slate-300 text-sm font-tech">傳真：03-369-8009</div>
                                 </div>
                             </div>
                             <div class="flex items-start gap-4">
                                 <iconify-icon icon="mdi:email" class="text-industrial-accent text-xl mt-1"></iconify-icon>
                                 <div>
                                     <div class="font-bold text-sm">技術支援與報價</div>
-                                    <a href="mailto:hst2872@hxiang.com.tw" class="inline-flex min-h-11 items-center py-2 text-sm font-tech text-gray-400 hover:text-white">hst2872@hxiang.com.tw</a>
+                                    <a href="mailto:hst2872@hxiang.com.tw" class="inline-flex min-h-11 items-center py-2 text-sm font-tech text-slate-300 hover:text-white break-all">hst2872@hxiang.com.tw</a>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <iconify-icon icon="mdi:clock-outline" class="text-industrial-accent text-xl mt-1"></iconify-icon>
+                                <div>
+                                    <div class="font-bold text-sm">營業時間</div>
+                                    <div class="text-slate-300 text-sm">週一至週五 09:00–17:00</div>
                                 </div>
                             </div>
                         </div>
@@ -397,7 +401,8 @@
 
                 <!-- Form Side -->
                 <div class="lg:col-span-3 p-10 lg:p-14">
-                    <h4 class="text-xl font-bold text-industrial-900 mb-8 border-b-2 border-industrial-accent pb-2 inline-block">技術與報價諮詢表單</h4>
+                    <h3 class="text-xl font-bold text-industrial-900 mb-3">技術與報價諮詢</h3>
+                    <p class="mb-8 max-w-2xl text-sm leading-relaxed text-gray-600">填寫電芯型號、治具、預計產能或現有製程，能幫助工程團隊更快進行初步評估。</p>
                     <form id="enquiry-form" class="space-y-6" action="https://script.google.com/macros/s/AKfycbx--816oY6G-QqbMACrQi5_2_ZhmQ67eXzD4BOAw3LhD-xdjPnwlFdD_ZdclkRMyLfLZQ/exec" method="post" target="enquiry-response">
                         <input type="hidden" name="source" value="網站首頁">
                         <div class="absolute -left-[10000px] opacity-0" aria-hidden="true">
@@ -407,63 +412,67 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label for="company" class="block text-xs font-bold text-gray-700 mb-2 uppercase">公司名稱</label>
-                                <input id="company" name="company" type="text" autocomplete="organization" class="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-sm focus:outline-none focus:border-industrial-accent focus:ring-1 focus:ring-industrial-accent transition-colors" placeholder="請輸入貴公司名稱" required>
+                                <input id="company" name="company" type="text" autocomplete="organization" maxlength="100" class="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-base focus:outline-none focus:border-industrial-accent focus:ring-1 focus:ring-industrial-accent transition-colors" placeholder="例如：鴻翔機械有限公司" required>
                             </div>
                             <div>
                                 <label for="contact-name" class="block text-xs font-bold text-gray-700 mb-2 uppercase">聯絡人姓名</label>
-                                <input id="contact-name" name="contactName" type="text" autocomplete="name" class="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-sm focus:outline-none focus:border-industrial-accent focus:ring-1 focus:ring-industrial-accent transition-colors" placeholder="請輸入您的姓名" required>
+                                <input id="contact-name" name="contactName" type="text" autocomplete="name" maxlength="60" class="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-base focus:outline-none focus:border-industrial-accent focus:ring-1 focus:ring-industrial-accent transition-colors" placeholder="例如：王先生" required>
                             </div>
                             <div>
                                 <label for="phone" class="block text-xs font-bold text-gray-700 mb-2 uppercase">聯絡電話</label>
-                                <input id="phone" name="phone" type="tel" autocomplete="tel" class="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-sm focus:outline-none focus:border-industrial-accent focus:ring-1 focus:ring-industrial-accent transition-colors" placeholder="分機或手機號碼" required>
+                                <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="30" class="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-base focus:outline-none focus:border-industrial-accent focus:ring-1 focus:ring-industrial-accent transition-colors" placeholder="例如：03-369-5689 分機 123" required>
                             </div>
                             <div>
                                 <label for="email" class="block text-xs font-bold text-gray-700 mb-2 uppercase">電子信箱</label>
-                                <input id="email" name="email" type="email" autocomplete="email" class="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-sm focus:outline-none focus:border-industrial-accent focus:ring-1 focus:ring-industrial-accent transition-colors" placeholder="name@company.com" required>
+                                <input id="email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="120" class="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-base focus:outline-none focus:border-industrial-accent focus:ring-1 focus:ring-industrial-accent transition-colors" placeholder="name@company.com" required>
                             </div>
                         </div>
                         
                         <div>
                             <label for="inquiry-type" class="block text-xs font-bold text-gray-700 mb-2 uppercase">需求類別</label>
-                            <select id="inquiry-type" name="inquiryType" class="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-sm focus:outline-none focus:border-industrial-accent focus:ring-1 focus:ring-industrial-accent transition-colors">
-                                <option>索取標準機型規格書</option>
-                                <option>客製化產線規劃評估</option>
-                                <option>設備售後維修與保養</option>
-                                <option>其他合作事宜</option>
+                            <select id="inquiry-type" name="inquiryType" class="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-base focus:outline-none focus:border-industrial-accent focus:ring-1 focus:ring-industrial-accent transition-colors" required>
+                                <option value="">請選擇需求類別</option>
+                                <option value="索取自動電池點焊機規格">索取自動電池點焊機規格</option>
+                                <option value="索取電芯分選機規格">索取電芯分選機規格</option>
+                                <option value="客製化產線規劃評估">客製化產線規劃評估</option>
+                                <option value="設備售後維修與保養">設備售後維修與保養</option>
+                                <option value="其他合作事宜">其他合作事宜</option>
                             </select>
                         </div>
 
                         <div>
-                            <label for="message" class="block text-xs font-bold text-gray-700 mb-2 uppercase">詳細說明 (選填)</label>
-                            <textarea id="message" name="message" rows="4" class="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-sm focus:outline-none focus:border-industrial-accent focus:ring-1 focus:ring-industrial-accent transition-colors resize-none" placeholder="請簡述您的電池規格、預計產能或遭遇的製程痛點..."></textarea>
+                            <label for="message" class="block text-xs font-bold text-gray-700 mb-2 uppercase">需求說明（選填）</label>
+                            <textarea id="message" name="message" rows="5" maxlength="2000" class="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-base focus:outline-none focus:border-industrial-accent focus:ring-1 focus:ring-industrial-accent transition-colors resize-y" placeholder="例如：18650 電芯、每小時預計產能、鎳片形式、治具或料盒尺寸"></textarea>
                         </div>
                         
-                        <button type="submit" class="w-full bg-industrial-900 hover:bg-industrial-800 text-white font-bold py-4 rounded transition-colors flex items-center justify-center gap-2">
+                        <button type="submit" class="w-full min-h-12 bg-industrial-900 hover:bg-industrial-800 disabled:cursor-wait disabled:opacity-70 text-white font-bold px-6 py-4 rounded transition-colors flex items-center justify-center gap-2">
                             <span>送出評估需求</span>
                             <iconify-icon icon="mdi:send"></iconify-icon>
                         </button>
                         <p id="enquiry-status" class="min-h-6 text-sm text-gray-600" role="status" aria-live="polite"></p>
-                        <p class="text-xs text-gray-500 leading-relaxed">送出後，我們只會使用您提供的資料回覆這次詢問與後續服務聯繫。</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">送出後，我們只會使用您提供的資料回覆這次詢問與必要的後續服務聯繫。詳見<a href="privacy-policy.html" class="inline-flex min-h-11 items-center px-1 font-bold text-industrial-accent underline-offset-4 hover:underline">隱私權政策</a>。</p>
                     </form>
                     <iframe id="enquiry-response" name="enquiry-response" title="表單送出結果" class="hidden" tabindex="-1"></iframe>
                 </div>
             </div>
         </div>
     </section>
+    </main>
 
     <!-- Footer -->
     <footer class="bg-industrial-900 text-gray-400 py-8 border-t border-white/10 text-center text-sm">
         <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
             <p>&copy; 2026 鴻翔機械有限公司 Hongxiang Machinery Co., Ltd. All Rights Reserved.</p>
-            <div class="flex gap-4">
-                <a href="#" class="hover:text-white transition-colors">隱私權政策</a>
-                <span>|</span>
-                <a href="#" class="hover:text-white transition-colors">服務條款</a>
+            <div class="flex items-center gap-4">
+                <a href="privacy-policy.html" class="inline-flex min-h-11 items-center px-2 hover:text-white transition-colors">隱私權政策</a>
+                <a href="contact.html" class="inline-flex min-h-11 items-center px-2 hover:text-white transition-colors">聯絡資訊</a>
             </div>
         </div>
     </footer>
 
     <!-- Scripts for Interactions & Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script>
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
@@ -474,137 +483,72 @@
                 nav.classList.remove('shadow-lg');
                 nav.querySelector('.absolute').classList.replace('bg-industrial-900/95', 'bg-industrial-900/90');
             }
-        });
+        }, { passive: true });
 
-        gsap.registerPlugin(ScrollTrigger);
-        
-        gsap.fromTo(".gs-reveal", 
-            { y: 30, opacity: 0 }, 
-            { y: 0, opacity: 1, duration: 1, stagger: 0.15, ease: "power3.out" }
-        );
-
-        gsap.utils.toArray('.gs-fade-up').forEach(element => {
-            gsap.fromTo(element, 
-                { y: 50, opacity: 0 },
-                {
-                    scrollTrigger: { trigger: element, start: "top 85%" },
-                    y: 0, opacity: 1, duration: 0.8, ease: "power2.out"
-                }
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!reduceMotion && window.gsap && window.ScrollTrigger) {
+            gsap.registerPlugin(ScrollTrigger);
+            gsap.fromTo(".gs-reveal",
+                { y: 30, opacity: 0 },
+                { y: 0, opacity: 1, duration: 1, stagger: 0.15, ease: "power3.out" }
             );
-        });
 
-        gsap.utils.toArray('.gs-fade-left').forEach(element => {
-            gsap.fromTo(element, 
-                { x: 50, opacity: 0 },
-                {
-                    scrollTrigger: { trigger: element, start: "top 85%" },
-                    x: 0, opacity: 1, duration: 1, ease: "power2.out"
-                }
-            );
-        });
-
-        anime({
-            targets: '.gear-outer', rotate: 360, duration: 20000,
-            easing: 'linear', loop: true, transformOrigin: '400px 400px'
-        });
-
-        anime({
-            targets: '.pulse-line',
-            strokeDashoffset: [anime.setDashoffset, 0],
-            easing: 'easeInOutSine', duration: 1500,
-            delay: function(el, i) { return i * 250 },
-            direction: 'alternate', loop: true
-        });
-
-        const initThreeJS = () => {
-            const container = document.getElementById('three-canvas');
-            if (!container) return;
-
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
-            camera.position.z = 30;
-
-            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-            renderer.setSize(container.clientWidth, container.clientHeight);
-            renderer.setPixelRatio(window.devicePixelRatio);
-            container.appendChild(renderer.domElement);
-
-            const geometry = new THREE.BufferGeometry();
-            const particlesCount = 300;
-            const posArray = new Float32Array(particlesCount * 3);
-            
-            for(let i = 0; i < particlesCount * 3; i++) {
-                posArray[i] = (Math.random() - 0.5) * 100;
-            }
-            
-            geometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-            
-            const material = new THREE.PointsMaterial({
-                size: 0.2, color: 0x0284c7, transparent: true,
-                opacity: 0.6, blending: THREE.AdditiveBlending
+            gsap.utils.toArray('.gs-fade-up').forEach(element => {
+                gsap.fromTo(element,
+                    { y: 36, opacity: 0 },
+                    {
+                        scrollTrigger: { trigger: element, start: "top 88%", once: true },
+                        y: 0, opacity: 1, duration: 0.75, ease: "power2.out"
+                    }
+                );
             });
-            
-            const particlesMesh = new THREE.Points(geometry, material);
-            scene.add(particlesMesh);
-
-            const materialLine = new THREE.LineBasicMaterial({
-                color: 0x1e293b, transparent: true, opacity: 0.3
-            });
-            const lineMesh = new THREE.LineSegments(geometry, materialLine);
-            scene.add(lineMesh);
-
-            let mouseX = 0;
-            let mouseY = 0;
-
-            const animate = () => {
-                requestAnimationFrame(animate);
-                
-                particlesMesh.rotation.y += 0.001;
-                particlesMesh.rotation.x += 0.0005;
-                lineMesh.rotation.y += 0.001;
-                lineMesh.rotation.x += 0.0005;
-
-                particlesMesh.rotation.x += mouseY * 0.00005;
-                particlesMesh.rotation.y += mouseX * 0.00005;
-                
-                renderer.render(scene, camera);
-            };
-            animate();
-
-            document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX - window.innerWidth / 2;
-                mouseY = e.clientY - window.innerHeight / 2;
-            });
-
-            window.addEventListener('resize', () => {
-                camera.aspect = container.clientWidth / container.clientHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(container.clientWidth, container.clientHeight);
-            });
-        };
-
-        window.addEventListener('DOMContentLoaded', initThreeJS);
+        }
 
         document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-            // ??? alert('Mobile menu toggled - To be implemented based on exact navigation links');
             const mobileMenu = document.getElementById('mobile-menu');
             const icon = this.querySelector('iconify-icon');
-        
-            // 切換 hidden（隱藏）與 flex（顯示）狀態
+
             mobileMenu.classList.toggle('hidden');
             mobileMenu.classList.toggle('flex');
-        
-            // 根據選單開關狀態，切換「三條槓 mdi:menu」與「叉叉 mdi:close」的圖示
+
             const isOpen = !mobileMenu.classList.contains('hidden');
             this.setAttribute('aria-expanded', String(isOpen));
             this.setAttribute('aria-label', isOpen ? '關閉選單' : '開啟選單');
+            mobileMenu.setAttribute('aria-hidden', String(!isOpen));
 
             if (!isOpen) {
                 icon.setAttribute('icon', 'mdi:menu');
             } else {
                 icon.setAttribute('icon', 'mdi:close');
             }
-      });
+        });
+
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                const mobileMenu = document.getElementById('mobile-menu');
+                const menuButton = document.getElementById('mobile-menu-btn');
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+                mobileMenu.setAttribute('aria-hidden', 'true');
+                menuButton.setAttribute('aria-expanded', 'false');
+                menuButton.setAttribute('aria-label', '開啟選單');
+                menuButton.querySelector('iconify-icon')?.setAttribute('icon', 'mdi:menu');
+            });
+        });
+
+        document.addEventListener('keydown', event => {
+            if (event.key !== 'Escape') return;
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuButton = document.getElementById('mobile-menu-btn');
+            if (mobileMenu.classList.contains('hidden')) return;
+            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.remove('flex');
+            mobileMenu.setAttribute('aria-hidden', 'true');
+            menuButton.setAttribute('aria-expanded', 'false');
+            menuButton.setAttribute('aria-label', '開啟選單');
+            menuButton.querySelector('iconify-icon')?.setAttribute('icon', 'mdi:menu');
+            menuButton.focus();
+        });
 
         const enquiryForm = document.getElementById('enquiry-form');
         const enquiryFrame = document.getElementById('enquiry-response');
@@ -617,7 +561,6 @@
             enquirySubmitted = true;
             enquiryStatus.textContent = '正在送出，請稍候…';
             enquirySubmitButton.disabled = true;
-            enquirySubmitButton.classList.add('opacity-70', 'cursor-wait');
             enquirySubmitText.textContent = '送出中…';
         });
 
@@ -627,11 +570,8 @@
             enquiryForm.reset();
             enquiryStatus.textContent = '已收到您的詢問，鴻翔團隊將盡快與您聯繫。';
             enquirySubmitButton.disabled = false;
-            enquirySubmitButton.classList.remove('opacity-70', 'cursor-wait');
             enquirySubmitText.textContent = '送出評估需求';
         });
-
-    // (選填) 如果你有原本控制 navbar 滾動變色的程式碼，可以繼續保留在下方
 </script>
 </body>
 </html>
