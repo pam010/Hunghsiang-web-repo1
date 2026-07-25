@@ -1,7 +1,6 @@
 module.exports = {
   content: [
-    './index.html',
-    './privacy-policy.html'
+    './*.html'
   ],
   theme: {
     extend: {
