@@ -46,6 +46,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="site.css">
+    <style>
+        .bg-industrial-action { background-color: #0369a1; }
+        .hover\:bg-industrial-action-hover:hover { background-color: #075985; }
+    </style>
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js" defer></script>
 
     <style>
@@ -189,7 +193,7 @@
             <a href="/" class="text-white text-sm font-medium transition-colors">回首頁</a>
             <a href="product-&-service.html" class="text-gray-300 hover:text-white text-sm font-medium transition-colors">產品及服務</a>
             <a href="contact.html" class="text-gray-300 hover:text-white text-sm font-medium transition-colors">關於我們</a>
-            <a href="#contact" class="px-5 py-2 bg-industrial-accent hover:bg-blue-600 text-white text-sm font-bold rounded transition-all shadow-[0_0_15px_rgba(2,132,199,0.4)] hover:shadow-[0_0_25px_rgba(2,132,199,0.6)]">
+            <a href="#contact" class="px-5 py-2 bg-industrial-action hover:bg-industrial-action-hover text-white text-sm font-bold rounded transition-colors shadow-lg">
                 索取規格
             </a>
           </div>
@@ -203,7 +207,7 @@
              <a href="/" class="px-6 py-4 text-white bg-white/5 border-b border-white/5 text-sm font-medium">回首頁</a>
              <a href="product-&-service.html" class="px-6 py-4 text-gray-300 hover:text-white hover:bg-white/5 border-b border-white/5 text-sm font-medium">產品及服務</a>
              <a href="contact.html" class="px-6 py-4 text-gray-300 hover:text-white hover:bg-white/5 text-sm font-medium">關於我們</a>
-             <a href="#contact" class="px-6 py-4 bg-industrial-accent text-white text-sm font-bold">索取規格與技術評估</a>
+             <a href="#contact" class="px-6 py-4 bg-industrial-action hover:bg-industrial-action-hover text-white text-sm font-bold transition-colors">索取規格與技術評估</a>
           </div>
     </nav>
 
@@ -213,10 +217,10 @@
         <!-- SVG Animation Layer -->
        <div class="slider-box">
             <div class="slider-content">
-                <img src="image/battery_group.jpg" alt="" width="2048" height="1152" fetchpriority="high">
-                <img src="image/battery_ecosystem.jpg" alt="" width="2048" height="1061">
-                <img src="image/solar_factor.jpg" alt="" width="1550" height="872">
-                <img src="image/battery_group.jpg" alt="" width="2048" height="1152">
+                <img src="image/battery-group.webp" srcset="image/battery-group-768.webp 768w, image/battery-group.webp 1600w" sizes="100vw" alt="" width="1600" height="900" fetchpriority="high" decoding="async">
+                <img src="image/battery-ecosystem.webp" srcset="image/battery-ecosystem-768.webp 768w, image/battery-ecosystem.webp 1600w" sizes="100vw" alt="" width="1600" height="829" loading="lazy" decoding="async">
+                <img src="image/solar-factor.webp" srcset="image/solar-factor-768.webp 768w, image/solar-factor.webp 1550w" sizes="100vw" alt="" width="1550" height="872" loading="lazy" decoding="async">
+                <img src="image/battery-group.webp" srcset="image/battery-group-768.webp 768w, image/battery-group.webp 1600w" sizes="100vw" alt="" width="1600" height="900" loading="lazy" decoding="async">
             </div>
             <div class="absolute inset-0 bg-industrial-900/75 z-10"></div>
         </div>
@@ -255,7 +259,7 @@
                 <a href="#products" class="px-8 py-4 bg-white text-industrial-900 font-bold rounded flex items-center gap-2 hover:bg-gray-100 transition-colors shadow-lg">查看設備
                     <iconify-icon icon="mdi:arrow-right" class="text-xl"></iconify-icon>
                 </a>
-                <a href="#contact" class="px-8 py-4 bg-industrial-accent hover:bg-blue-600 text-white font-bold rounded flex items-center gap-2 transition-colors shadow-lg border border-transparent">索取規格與技術評估
+                <a href="#contact" class="px-8 py-4 bg-industrial-action hover:bg-industrial-action-hover text-white font-bold rounded flex items-center gap-2 transition-colors shadow-lg border border-transparent">索取規格與技術評估
                     <iconify-icon icon="mdi:file-document-outline" class="text-xl"></iconify-icon>
                 </a>
             </div>
@@ -281,7 +285,10 @@
                 <article class="glass-card rounded-lg overflow-hidden group gs-fade-up">
                     <div class="relative h-60 overflow-hidden">
                         <div class="absolute inset-0 bg-industrial-900/40 group-hover:bg-transparent transition-colors z-10"></div>
-                        <img src="image/battery sorting machie.png" alt="鴻翔 18650、21700 電芯自動分選機" width="1195" height="896" loading="lazy" decoding="async" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
+                        <picture class="block h-full w-full">
+                            <source type="image/webp" srcset="image/battery-cell-sorting-machine-720.webp 720w, image/battery-cell-sorting-machine.webp 1195w" sizes="(min-width: 768px) 33vw, calc(100vw - 48px)">
+                            <img src="image/battery sorting machie.png" alt="鴻翔 18650、21700 電芯自動分選機" width="1195" height="896" loading="lazy" decoding="async" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
+                        </picture>
                         <div class="absolute top-4 right-4 z-20 bg-industrial-accent text-white text-xs font-bold px-2 py-1 rounded">HX-S Series</div>
                     </div>
                     <div class="p-6">
@@ -305,7 +312,10 @@
                 <article class="glass-card rounded-lg overflow-hidden group gs-fade-up delay-100">
                     <div class="relative h-60 overflow-hidden">
                         <div class="absolute inset-0 bg-industrial-900/40 group-hover:bg-transparent transition-colors z-10"></div>
-                        <img src="image/battery welding machine .png" alt="鴻翔單軸電阻式自動電池點焊機" width="768" height="1024" loading="lazy" decoding="async" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
+                        <picture class="block h-full w-full">
+                            <source type="image/webp" srcset="image/single-axis-battery-spot-welding-machine-720.webp 720w, image/single-axis-battery-spot-welding-machine.webp 768w" sizes="(min-width: 768px) 33vw, calc(100vw - 48px)">
+                            <img src="image/battery welding machine .png" alt="鴻翔單軸電阻式自動電池點焊機" width="768" height="1024" loading="lazy" decoding="async" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
+                        </picture>
                         <div class="absolute top-4 right-4 z-20 bg-industrial-accent text-white text-xs font-bold px-2 py-1 rounded">HX-W Series</div>
                     </div>
                     <div class="p-6">
@@ -329,7 +339,10 @@
                 <article class="glass-card rounded-lg overflow-hidden group gs-fade-up delay-200">
                     <div class="relative h-60 overflow-hidden">
                         <div class="absolute inset-0 bg-industrial-900/40 group-hover:bg-transparent transition-colors z-10"></div>
-                        <img src="image/Dual-battery-spotwelder.png" alt="鴻翔雙軸電阻式自動電池點焊機" width="1472" height="1956" loading="lazy" decoding="async" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
+                        <picture class="block h-full w-full">
+                            <source type="image/webp" srcset="image/automatic-battery-spot-welding-machine-720.webp 720w, image/automatic-battery-spot-welding-machine.webp 1472w" sizes="(min-width: 768px) 33vw, calc(100vw - 48px)">
+                            <img src="image/Dual-battery-spotwelder.png" alt="鴻翔雙軸電阻式自動電池點焊機" width="1472" height="1956" loading="lazy" decoding="async" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
+                        </picture>
                         <div class="absolute top-4 right-4 z-20 bg-industrial-accent text-white text-xs font-bold px-2 py-1 rounded">HX-A Series</div>
                     </div>
                     <div class="p-6">
@@ -360,7 +373,7 @@
                 
                 <!-- Info Side -->
                 <div class="lg:col-span-2 bg-industrial-900 p-10 text-white relative overflow-hidden">
-                    <div class="absolute inset-0 opacity-10 bg-[url('image/solar_factor.jpg')] bg-cover bg-center"></div>
+                    <div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image: url('image/solar-factor-768.webp');"></div>
                     <div class="relative z-10">
                         <h2 class="text-2xl font-bold mb-6">聯絡鴻翔機械</h2>
                         <p class="text-slate-300 text-sm mb-10 leading-relaxed">需要技術評估、產品規格書或客製化設備規劃？請提供您的設備需求，我們會在營業時間內盡快回覆。</p>
@@ -556,21 +569,45 @@
         const enquirySubmitButton = enquiryForm?.querySelector('button[type="submit"]');
         const enquirySubmitText = enquirySubmitButton?.querySelector('span');
         let enquirySubmitted = false;
+        let enquiryFallbackTimer;
 
-        enquiryForm?.addEventListener('submit', () => {
+        const restoreEnquiryForm = () => {
+            if (!enquiryForm || !enquirySubmitButton || !enquirySubmitText) return;
+            enquiryForm.removeAttribute('aria-busy');
+            enquirySubmitButton.disabled = false;
+            enquirySubmitText.textContent = '送出評估需求';
+        };
+
+        enquiryForm?.addEventListener('submit', event => {
+            if (!navigator.onLine) {
+                event.preventDefault();
+                enquiryStatus.textContent = '目前無法連線，請確認網路後再試一次，或改用電話 03-369-5689 與 Email 聯絡。';
+                restoreEnquiryForm();
+                return;
+            }
+
             enquirySubmitted = true;
             enquiryStatus.textContent = '正在送出，請稍候…';
+            enquiryForm.setAttribute('aria-busy', 'true');
             enquirySubmitButton.disabled = true;
             enquirySubmitText.textContent = '送出中…';
+
+            clearTimeout(enquiryFallbackTimer);
+            enquiryFallbackTimer = window.setTimeout(() => {
+                if (!enquirySubmitted) return;
+                enquirySubmitted = false;
+                restoreEnquiryForm();
+                enquiryStatus.textContent = '送出時間較長，請確認網路後再試一次，或改用電話 03-369-5689 與 Email 聯絡。您填寫的內容仍保留在表單中。';
+            }, 20000);
         });
 
         enquiryFrame?.addEventListener('load', () => {
             if (!enquirySubmitted) return;
             enquirySubmitted = false;
+            clearTimeout(enquiryFallbackTimer);
             enquiryForm.reset();
             enquiryStatus.textContent = '已收到您的詢問，鴻翔團隊將盡快與您聯繫。';
-            enquirySubmitButton.disabled = false;
-            enquirySubmitText.textContent = '送出評估需求';
+            restoreEnquiryForm();
         });
 </script>
 </body>
