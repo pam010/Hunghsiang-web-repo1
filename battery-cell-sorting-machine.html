@@ -65,6 +65,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site.css">
+  <style>
+    .bg-industrial-action { background-color: #0369a1; }
+    .hover\:bg-industrial-action-hover:hover { background-color: #075985; }
+  </style>
 </head>
 <body class="overflow-x-hidden bg-slate-50 font-sans text-slate-900 antialiased selection:bg-sky-600 selection:text-white">
   <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-white focus:px-4 focus:py-3 focus:font-bold focus:text-slate-950">
@@ -85,7 +89,7 @@
         <a href="product-&-service.html" class="inline-flex min-h-11 items-center hover:text-white">產品及服務</a>
         <a href="automatic-battery-spot-welding-machine.html" class="inline-flex min-h-11 items-center hover:text-white">自動電池點焊機</a>
         <a href="battery-cell-sorting-machine.html" aria-current="page" class="inline-flex min-h-11 items-center font-bold text-sky-300">電芯分選機</a>
-        <a href="#enquiry" class="inline-flex min-h-11 items-center rounded bg-sky-600 px-5 font-bold text-white hover:bg-sky-500">索取規格</a>
+        <a href="#enquiry" class="inline-flex min-h-11 items-center rounded bg-industrial-action px-5 font-bold text-white hover:bg-industrial-action-hover">索取規格</a>
       </div>
       <button type="button" id="mobile-menu-btn" class="flex min-h-11 min-w-11 items-center justify-center rounded text-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300 lg:hidden" aria-label="開啟選單" aria-expanded="false" aria-controls="mobile-menu">
         <span data-menu-icon aria-hidden="true">☰</span>
@@ -96,7 +100,7 @@
       <a href="product-&-service.html" class="flex min-h-11 items-center border-t border-white/10 px-6 py-3">產品及服務</a>
       <a href="automatic-battery-spot-welding-machine.html" class="flex min-h-11 items-center border-t border-white/10 px-6 py-3">自動電池點焊機</a>
       <a href="battery-cell-sorting-machine.html" aria-current="page" class="flex min-h-11 items-center border-t border-white/10 px-6 py-3 font-bold text-sky-300">電芯分選機</a>
-      <a href="#enquiry" class="flex min-h-11 items-center border-t border-white/10 bg-sky-600 px-6 py-3 font-bold">索取規格與技術評估</a>
+      <a href="#enquiry" class="flex min-h-11 items-center border-t border-white/10 bg-industrial-action px-6 py-3 font-bold hover:bg-industrial-action-hover">索取規格與技術評估</a>
     </div>
   </header>
 
@@ -117,7 +121,7 @@
         <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-200">透過內阻與電壓測試，將圓柱電芯自動分選至對應流道，協助後續電池模組組裝維持一致的電芯條件。</p>
         <div class="mt-9 flex flex-wrap gap-4">
           <a href="#process" class="inline-flex min-h-12 items-center rounded bg-white px-6 py-3 font-bold text-slate-950 hover:bg-slate-100">了解分選流程</a>
-          <a href="#enquiry" class="inline-flex min-h-12 items-center rounded bg-sky-600 px-6 py-3 font-bold text-white hover:bg-sky-500">索取規格與技術評估</a>
+          <a href="#enquiry" class="inline-flex min-h-12 items-center rounded bg-industrial-action px-6 py-3 font-bold text-white hover:bg-industrial-action-hover">索取規格與技術評估</a>
         </div>
       </div>
     </section>
@@ -259,7 +263,7 @@
             <label for="message" class="mb-2 block text-sm font-bold">設備需求</label>
             <textarea id="message" name="message" rows="5" maxlength="2000" required class="w-full resize-y rounded border border-slate-300 bg-white px-4 py-3 text-base focus:border-sky-600 focus:outline-none focus:ring-2 focus:ring-sky-200" placeholder="請填寫電芯型號、分選條件、料盒形式、分類需求與預計產能"></textarea>
           </div>
-          <button type="submit" class="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded bg-sky-600 px-6 py-3 font-bold text-white hover:bg-sky-500 disabled:cursor-wait disabled:opacity-70">
+          <button type="submit" class="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded bg-industrial-action px-6 py-3 font-bold text-white hover:bg-industrial-action-hover disabled:cursor-wait disabled:opacity-70">
             <span data-submit-label>送出技術評估需求</span>
           </button>
           <p id="product-enquiry-status" class="mt-4 min-h-6 text-sm leading-6 text-slate-600" role="status" aria-live="polite"></p>
