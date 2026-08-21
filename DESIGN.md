@@ -8,6 +8,8 @@ colors:
   brand-blue: "#0284c7"
   action-blue: "#0369a1"
   action-blue-hover: "#075985"
+  signal-blue: "#7dd3fc"
+  supporting-text: "#cbd5e1"
   light-surface: "#f8fafc"
   white: "#ffffff"
 typography:
