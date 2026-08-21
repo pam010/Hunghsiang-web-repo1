@@ -61,10 +61,28 @@
     ]
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": "https://www.hongxiang-taoyuan.com/battery-cell-sorting-machine.html#faq",
+    "mainEntity": [
+      {"@type":"Question","name":"電芯分選機可以檢測哪些項目？","acceptedAnswer":{"@type":"Answer","text":"設備可量測圓柱電芯的電壓與內阻，並依設定的上下限區間，自動判定及分配電芯等級。分選參數可依不同批次的樣本、產品規格與品質要求進行設定。"}},
+      {"@type":"Question","name":"電芯分選機支援哪些上料方式？","acceptedAnswer":{"@type":"Answer","text":"設備可依需求規劃人工放料或全自動上料。人工放料方案具有較高的操作彈性；全自動上料則適合需要穩定節拍、減少人力及提高產能的生產環境。"}},
+      {"@type":"Question","name":"可支援哪些圓柱電芯規格？","acceptedAnswer":{"@type":"Answer","text":"標準應用可支援 18650 與 21700 圓柱電芯。其他圓柱電芯尺寸可依電芯外形、上下料方式、治具、檢測位置及產能需求進行客製化評估。"}},
+      {"@type":"Question","name":"電芯分選機有多少個分選通道？","acceptedAnswer":{"@type":"Answer","text":"標準配置為 6 個分選槽加 1 個 NG 槽。設備可依設定的電壓與內阻區間，將合格電芯分配至不同等級，未符合設定條件的電芯則送入 NG 槽。"}},
+      {"@type":"Question","name":"電芯分選機的分選速度是多少？","acceptedAnswer":{"@type":"Answer","text":"設備的參考分選產能為：18650 電芯平均約 3,200 顆／小時；21700 電芯平均約 2,400 顆／小時。實際產能會依電芯規格、上料方式、量測條件、分選參數及客製化設備配置而有所不同。"}},
+      {"@type":"Question","name":"電壓與內阻的量測精度是多少？","acceptedAnswer":{"@type":"Answer","text":"設備會依批次樣本與產品規格，設定電壓及內阻的分選區間。實際量測精度取決於專案選用的量測儀器、量測範圍與校正條件，相關量測規格可於設備評估時提供。"}},
+      {"@type":"Question","name":"分選資料可以儲存或串接 MES 嗎？","acceptedAnswer":{"@type":"Answer","text":"可以。設備可記錄每日生產資料，包括量測時間、電壓、內阻與分選結果，並支援 CSV 或 Excel 相容格式匯出。設備也可依既有 MES 或資料採集系統的介面需求進行整合評估；實際資料欄位、同步方式與整合範圍會於專案評估時確認。"}},
+      {"@type":"Question","name":"能否與既有設備或產線整合？","acceptedAnswer":{"@type":"Answer","text":"可以。鴻翔可依既有設備、廠房空間、上下游流程及產能需求，客製化規劃上料、量測、分選、下料與資料交換等自動化整合方案。實際整合方式需在確認既有設備介面及現場條件後規劃。"}}
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="faq.css">
   <style>
     .bg-industrial-action { background-color: #0369a1; }
     .hover\:bg-industrial-action-hover:hover { background-color: #075985; }
@@ -207,6 +225,68 @@
         <article class="rounded-xl border border-slate-200 bg-white p-7"><h3 class="font-bold">順達科技</h3><p class="mt-3 text-sm leading-6 text-slate-600">全自動電芯分選機，以及單軸、雙軸電阻式點焊設備。</p></article>
         <article class="rounded-xl border border-slate-200 bg-white p-7"><h3 class="font-bold">達宇電能</h3><p class="mt-3 text-sm leading-6 text-slate-600">全自動電芯分選機，以及單軸、雙軸電阻式點焊設備。</p></article>
         <article class="rounded-xl border border-slate-200 bg-white p-7"><h3 class="font-bold">明曜科技</h3><p class="mt-3 text-sm leading-6 text-slate-600">全自動電芯分選機與雙軸電阻式點焊設備。</p></article>
+      </div>
+    </section>
+
+    <section id="faq" class="faq-section">
+      <div class="mx-auto max-w-7xl px-6 py-20">
+        <div class="max-w-3xl">
+          <p class="text-sm font-bold text-sky-300">分選設備評估指南</p>
+          <h2 class="mt-3 text-3xl font-black tracking-tight md:text-4xl">電芯分選機常見問題</h2>
+          <p class="mt-5 leading-8 text-slate-300">整理電壓與內阻檢測、分選產能、資料輸出及產線整合等設備評估重點。</p>
+        </div>
+
+        <div class="faq-groups faq-groups--two">
+          <section aria-labelledby="sorting-faq-capability">
+            <h3 id="sorting-faq-capability" class="faq-group-title">檢測、上料與分選能力</h3>
+            <div class="faq-list">
+              <details class="faq-item" open>
+                <summary>電芯分選機可以檢測哪些項目？</summary>
+                <div class="faq-answer"><p>設備可量測圓柱電芯的電壓與內阻，並依設定的上下限區間，自動判定及分配電芯等級。分選參數可依不同批次的樣本、產品規格與品質要求進行設定。</p></div>
+              </details>
+              <details class="faq-item">
+                <summary>電芯分選機支援哪些上料方式？</summary>
+                <div class="faq-answer"><p>設備可依需求規劃人工放料或全自動上料。人工放料方案具有較高的操作彈性；全自動上料則適合需要穩定節拍、減少人力及提高產能的生產環境。</p></div>
+              </details>
+              <details class="faq-item">
+                <summary>可支援哪些圓柱電芯規格？</summary>
+                <div class="faq-answer"><p>標準應用可支援 18650 與 21700 圓柱電芯。其他圓柱電芯尺寸可依電芯外形、上下料方式、治具、檢測位置及產能需求進行客製化評估。</p></div>
+              </details>
+              <details class="faq-item">
+                <summary>電芯分選機有多少個分選通道？</summary>
+                <div class="faq-answer"><p>標準配置為 6 個分選槽加 1 個 NG 槽。設備可依設定的電壓與內阻區間，將合格電芯分配至不同等級，未符合設定條件的電芯則送入 NG 槽。</p></div>
+              </details>
+            </div>
+          </section>
+
+          <section aria-labelledby="sorting-faq-data">
+            <h3 id="sorting-faq-data" class="faq-group-title">產能、資料與系統整合</h3>
+            <div class="faq-list">
+              <details class="faq-item">
+                <summary>電芯分選機的分選速度是多少？</summary>
+                <div class="faq-answer">
+                  <p>設備的參考分選產能如下：</p>
+                  <ul><li>18650 電芯平均約 3,200 顆／小時</li><li>21700 電芯平均約 2,400 顆／小時</li></ul>
+                  <p class="mt-3">實際產能會依電芯規格、上料方式、量測條件、分選參數及客製化設備配置而有所不同。</p>
+                </div>
+              </details>
+              <details class="faq-item">
+                <summary>電壓與內阻的量測精度是多少？</summary>
+                <div class="faq-answer"><p>設備會依批次樣本與產品規格，設定電壓及內阻的分選區間。實際量測精度取決於專案選用的量測儀器、量測範圍與校正條件，相關量測規格可於設備評估時提供。</p></div>
+              </details>
+              <details class="faq-item">
+                <summary>分選資料可以儲存或串接 MES 嗎？</summary>
+                <div class="faq-answer"><p>可以。設備可記錄每日生產資料，包括量測時間、電壓、內阻與分選結果，並支援 CSV 或 Excel 相容格式匯出。設備也可依既有 MES 或資料採集系統的介面需求進行整合評估；實際資料欄位、同步方式與整合範圍會於專案評估時確認。</p></div>
+              </details>
+              <details class="faq-item">
+                <summary>能否與既有設備或產線整合？</summary>
+                <div class="faq-answer"><p>可以。鴻翔可依既有設備、廠房空間、上下游流程及產能需求，客製化規劃上料、量測、分選、下料與資料交換等自動化整合方案。實際整合方式需在確認既有設備介面及現場條件後規劃。</p></div>
+              </details>
+            </div>
+          </section>
+        </div>
+
+        <p class="faq-note">需要確認分選槽、產能或資料需求？<a href="#enquiry" class="ml-1 inline-flex min-h-11 items-center font-bold text-sky-300 hover:underline">提交電芯條件，取得技術評估</a></p>
       </div>
     </section>
 
