@@ -1,0 +1,9 @@
+.cf-turnstile {
+  min-height: 65px;
+  max-width: 100%;
+}
+
+[data-enquiry-form] [role="status"][data-state="error"] {
+  color: #b91c1c;
+  font-weight: 500;
+}
