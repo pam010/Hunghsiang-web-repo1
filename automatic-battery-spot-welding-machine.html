@@ -94,6 +94,9 @@
     .bg-industrial-action { background-color: #0369a1; }
     .hover\:bg-industrial-action-hover:hover { background-color: #075985; }
   </style>
+  <link rel="stylesheet" href="enquiry-protection.css">
+  <script src="enquiry-protection.js" defer></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>
 </head>
 <body class="overflow-x-hidden bg-slate-50 font-sans text-slate-900 antialiased selection:bg-sky-600 selection:text-white">
   <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-white focus:px-4 focus:py-3 focus:font-bold focus:text-slate-950">
@@ -381,7 +384,7 @@
           </div>
         </div>
 
-        <form data-product-enquiry-form action="https://script.google.com/macros/s/AKfycbx--816oY6G-QqbMACrQi5_2_ZhmQ67eXzD4BOAw3LhD-xdjPnwlFdD_ZdclkRMyLfLZQ/exec" method="post" target="product-enquiry-response" class="rounded-xl bg-slate-50 p-6 shadow-sm md:p-8">
+        <form data-enquiry-form action="https://script.google.com/macros/s/AKfycbx--816oY6G-QqbMACrQi5_2_ZhmQ67eXzD4BOAw3LhD-xdjPnwlFdD_ZdclkRMyLfLZQ/exec" method="post" target="product-enquiry-response" class="rounded-xl bg-slate-50 p-6 shadow-sm md:p-8">
           <input type="hidden" name="source" value="自動電池點焊機產品頁">
           <input type="hidden" name="inquiryType" value="索取自動電池點焊機規格">
           <div class="absolute -left-[10000px] opacity-0" aria-hidden="true">
@@ -409,6 +412,11 @@
           <div class="mt-5">
             <label for="message" class="mb-2 block text-sm font-bold">設備需求</label>
             <textarea id="message" name="message" rows="5" maxlength="2000" required class="w-full resize-y rounded border border-slate-300 bg-white px-4 py-3 text-base focus:border-sky-600 focus:outline-none focus:ring-2 focus:ring-sky-200" placeholder="請填寫電芯型號、鎳片形式、模組尺寸、焊點數與預計產能"></textarea>
+          </div>
+          <div class="mt-6">
+            <p class="mb-2 text-sm font-bold text-slate-700">安全驗證</p>
+            <div class="cf-turnstile min-h-[65px] max-w-full" data-sitekey="0x4AAAAAAEcIV-mbUM94ZEQL" data-action="enquiry" data-theme="light" data-language="zh-TW" data-size="flexible" data-callback="onEnquiryTurnstileSuccess" data-expired-callback="onEnquiryTurnstileExpired" data-error-callback="onEnquiryTurnstileError"></div>
+            <p class="mt-2 text-xs leading-5 text-slate-600">此驗證用來阻擋自動化垃圾訊息，不會儲存您的表單內容。</p>
           </div>
           <button type="submit" class="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded bg-industrial-action px-6 py-3 font-bold text-white hover:bg-industrial-action-hover disabled:cursor-wait disabled:opacity-70">
             <span data-submit-label>送出技術評估需求</span>

@@ -164,6 +164,9 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="enquiry-protection.css">
+    <script src="enquiry-protection.js" defer></script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>
 </head>
 <body class="bg-industrial-light text-industrial-900 antialiased overflow-x-hidden selection:bg-industrial-accent selection:text-white">
 
@@ -416,7 +419,7 @@
                 <div class="lg:col-span-3 p-10 lg:p-14">
                     <h3 class="text-xl font-bold text-industrial-900 mb-3">技術與報價諮詢</h3>
                     <p class="mb-8 max-w-2xl text-sm leading-relaxed text-gray-600">填寫電芯型號、治具、預計產能或現有製程，能幫助工程團隊更快進行初步評估。</p>
-                    <form id="enquiry-form" class="space-y-6" action="https://script.google.com/macros/s/AKfycbx--816oY6G-QqbMACrQi5_2_ZhmQ67eXzD4BOAw3LhD-xdjPnwlFdD_ZdclkRMyLfLZQ/exec" method="post" target="enquiry-response">
+                    <form id="enquiry-form" data-enquiry-form class="space-y-6" action="https://script.google.com/macros/s/AKfycbx--816oY6G-QqbMACrQi5_2_ZhmQ67eXzD4BOAw3LhD-xdjPnwlFdD_ZdclkRMyLfLZQ/exec" method="post" target="enquiry-response">
                         <input type="hidden" name="source" value="網站首頁">
                         <div class="absolute -left-[10000px] opacity-0" aria-hidden="true">
                             <label for="website">請勿填寫此欄位</label>
@@ -458,6 +461,12 @@
                             <textarea id="message" name="message" rows="5" maxlength="2000" class="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-base focus:outline-none focus:border-industrial-accent focus:ring-1 focus:ring-industrial-accent transition-colors resize-y" placeholder="例如：18650 電芯、每小時預計產能、鎳片形式、治具或料盒尺寸"></textarea>
                         </div>
                         
+                        <div>
+                            <p class="mb-2 text-xs font-bold uppercase text-gray-700">安全驗證</p>
+                            <div class="cf-turnstile min-h-[65px] max-w-full" data-sitekey="0x4AAAAAAEcIV-mbUM94ZEQL" data-action="enquiry" data-theme="light" data-language="zh-TW" data-size="flexible" data-callback="onEnquiryTurnstileSuccess" data-expired-callback="onEnquiryTurnstileExpired" data-error-callback="onEnquiryTurnstileError"></div>
+                            <p class="mt-2 text-xs leading-5 text-gray-600">此驗證用來阻擋自動化垃圾訊息，不會儲存您的表單內容。</p>
+                        </div>
+
                         <button type="submit" class="w-full min-h-12 bg-industrial-900 hover:bg-industrial-800 disabled:cursor-wait disabled:opacity-70 text-white font-bold px-6 py-4 rounded transition-colors flex items-center justify-center gap-2">
                             <span>送出評估需求</span>
                             <iconify-icon icon="mdi:send"></iconify-icon>
@@ -563,52 +572,6 @@
             menuButton.focus();
         });
 
-        const enquiryForm = document.getElementById('enquiry-form');
-        const enquiryFrame = document.getElementById('enquiry-response');
-        const enquiryStatus = document.getElementById('enquiry-status');
-        const enquirySubmitButton = enquiryForm?.querySelector('button[type="submit"]');
-        const enquirySubmitText = enquirySubmitButton?.querySelector('span');
-        let enquirySubmitted = false;
-        let enquiryFallbackTimer;
-
-        const restoreEnquiryForm = () => {
-            if (!enquiryForm || !enquirySubmitButton || !enquirySubmitText) return;
-            enquiryForm.removeAttribute('aria-busy');
-            enquirySubmitButton.disabled = false;
-            enquirySubmitText.textContent = '送出評估需求';
-        };
-
-        enquiryForm?.addEventListener('submit', event => {
-            if (!navigator.onLine) {
-                event.preventDefault();
-                enquiryStatus.textContent = '目前無法連線，請確認網路後再試一次，或改用電話 03-369-5689 與 Email 聯絡。';
-                restoreEnquiryForm();
-                return;
-            }
-
-            enquirySubmitted = true;
-            enquiryStatus.textContent = '正在送出，請稍候…';
-            enquiryForm.setAttribute('aria-busy', 'true');
-            enquirySubmitButton.disabled = true;
-            enquirySubmitText.textContent = '送出中…';
-
-            clearTimeout(enquiryFallbackTimer);
-            enquiryFallbackTimer = window.setTimeout(() => {
-                if (!enquirySubmitted) return;
-                enquirySubmitted = false;
-                restoreEnquiryForm();
-                enquiryStatus.textContent = '送出時間較長，請確認網路後再試一次，或改用電話 03-369-5689 與 Email 聯絡。您填寫的內容仍保留在表單中。';
-            }, 20000);
-        });
-
-        enquiryFrame?.addEventListener('load', () => {
-            if (!enquirySubmitted) return;
-            enquirySubmitted = false;
-            clearTimeout(enquiryFallbackTimer);
-            enquiryForm.reset();
-            enquiryStatus.textContent = '已收到您的詢問，鴻翔團隊將盡快與您聯繫。';
-            restoreEnquiryForm();
-        });
 </script>
 </body>
 </html>
