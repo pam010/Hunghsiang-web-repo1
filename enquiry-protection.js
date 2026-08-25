@@ -1,7 +1,7 @@
 (() => {
   const RESPONSE_TYPE = 'hung-hsiang-enquiry-response';
   const TURNSTILE_FIELD = 'cf-turnstile-response';
-  const SUBMIT_TIMEOUT_MS = 20000;
+  const SUBMIT_TIMEOUT_MS = 30000;
   const pendingForms = new Map();
 
   const getStatus = form => form.querySelector('[role="status"]');
@@ -56,6 +56,25 @@
     widget.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
   };
 
+  const createRequestId = () => {
+    if (window.crypto && typeof window.crypto.randomUUID === 'function') {
+      return window.crypto.randomUUID();
+    }
+    return `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+  };
+
+  const setRequestId = form => {
+    let field = form.elements.namedItem('submissionId');
+    if (!field) {
+      field = document.createElement('input');
+      field.type = 'hidden';
+      field.name = 'submissionId';
+      form.appendChild(field);
+    }
+    field.value = createRequestId();
+    return field.value;
+  };
+
   const handleSubmit = (form, event) => {
     if (!navigator.onLine) {
       event.preventDefault();
@@ -82,6 +101,7 @@
 
     setStatus(form, '正在進行安全驗證並送出，請稍候…');
     setPending(form, true);
+    const requestId = setRequestId(form);
 
     const timer = window.setTimeout(() => {
       clearPending(form);
@@ -89,7 +109,7 @@
       setStatus(form, '送出時間較長，請稍後再試一次。您填寫的內容仍保留在表單中。', true);
     }, SUBMIT_TIMEOUT_MS);
 
-    pendingForms.set(form, { frame, timer });
+    pendingForms.set(form, { requestId, timer });
   };
 
   const isTrustedAppsScriptOrigin = origin => {
@@ -104,8 +124,9 @@
   window.addEventListener('message', event => {
     if (!isTrustedAppsScriptOrigin(event.origin) || event.data?.type !== RESPONSE_TYPE) return;
 
+    if (!event.data.requestId) return;
     const match = Array.from(pendingForms.entries()).find(([, pending]) => (
-      pending.frame?.contentWindow === event.source
+      pending.requestId === event.data.requestId
     ));
     if (!match) return;
 

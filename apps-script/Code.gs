@@ -17,16 +17,21 @@ const ENQUIRY_SETTINGS = {
 };
 
 function doGet() {
-  return jsonResponse_({ ok: true, service: 'Hung Hsiang enquiry receiver' });
+  return jsonResponse_({
+    ok: true,
+    service: 'Hung Hsiang enquiry receiver',
+    version: '2026-08-26-v2'
+  });
 }
 
 function doPost(event) {
-  try {
-    const values = event && event.parameter ? event.parameter : {};
+  const values = event && event.parameter ? event.parameter : {};
+  const requestId = clean_(values.submissionId, 100);
 
+  try {
     // A hidden field catches simple automated bots. Real visitors never see it.
     if (clean_(values.website, 200)) {
-      return formResponse_({ ok: true });
+      return formResponse_({ ok: true, requestId: requestId });
     }
 
     verifyTurnstile_(clean_(values['cf-turnstile-response'], 2048));
@@ -45,7 +50,7 @@ function doPost(event) {
     const now = new Date();
     const duplicate = appendEnquiryUnlessDuplicate_(enquiry, now);
     if (duplicate) {
-      return formResponse_({ ok: true, duplicate: true });
+      return formResponse_({ ok: true, duplicate: true, requestId: requestId });
     }
 
     try {
@@ -55,14 +60,15 @@ function doPost(event) {
       console.error('The enquiry was saved, but the notification email failed.', notificationError);
     }
 
-    return formResponse_({ ok: true });
+    return formResponse_({ ok: true, requestId: requestId });
   } catch (error) {
     console.error(error);
     return formResponse_({
       ok: false,
       error: error && error.code === 'verification_failed'
         ? 'verification_failed'
-        : 'submission_failed'
+        : 'submission_failed',
+      requestId: requestId
     });
   }
 }
@@ -244,7 +250,7 @@ function formResponse_(payload) {
     .replace(/\u2028/g, '\\u2028')
     .replace(/\u2029/g, '\\u2029');
   const html = '<!doctype html><html><head><meta charset="UTF-8"></head><body>' +
-    '<script>window.parent.postMessage(' + safeJson + ', "*");<\/script>' +
+    '<script>window.top.postMessage(' + safeJson + ', "https://www.hongxiang-taoyuan.com");<\/script>' +
     '</body></html>';
 
   return HtmlService
