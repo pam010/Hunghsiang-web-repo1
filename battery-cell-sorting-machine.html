@@ -61,10 +61,35 @@
     ]
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": "https://www.hongxiang-taoyuan.com/battery-cell-sorting-machine.html#faq",
+    "mainEntity": [
+      {"@type":"Question","name":"電芯分選機可以檢測哪些項目？","acceptedAnswer":{"@type":"Answer","text":"設備可量測圓柱電芯的電壓與內阻，並依設定的上下限區間，自動判定及分配電芯等級。分選參數可依不同批次的樣本、產品規格與品質要求進行設定。"}},
+      {"@type":"Question","name":"電芯分選機支援哪些上料方式？","acceptedAnswer":{"@type":"Answer","text":"設備可依需求規劃人工放料或全自動上料。人工放料方案具有較高的操作彈性；全自動上料則適合需要穩定節拍、減少人力及提高產能的生產環境。"}},
+      {"@type":"Question","name":"可支援哪些圓柱電芯規格？","acceptedAnswer":{"@type":"Answer","text":"標準應用可支援 18650 與 21700 圓柱電芯。其他圓柱電芯尺寸可依電芯外形、上下料方式、治具、檢測位置及產能需求進行客製化評估。"}},
+      {"@type":"Question","name":"電芯分選機有多少個分選通道？","acceptedAnswer":{"@type":"Answer","text":"標準配置為 6 個分選槽加 1 個 NG 槽。設備可依設定的電壓與內阻區間，將合格電芯分配至不同等級，未符合設定條件的電芯則送入 NG 槽。"}},
+      {"@type":"Question","name":"電芯分選機的分選速度是多少？","acceptedAnswer":{"@type":"Answer","text":"設備的參考分選產能為：18650 電芯平均約 3,200 顆／小時；21700 電芯平均約 2,400 顆／小時。實際產能會依電芯規格、上料方式、量測條件、分選參數及客製化設備配置而有所不同。"}},
+      {"@type":"Question","name":"電壓與內阻的量測精度是多少？","acceptedAnswer":{"@type":"Answer","text":"設備會依批次樣本與產品規格，設定電壓及內阻的分選區間。實際量測精度取決於專案選用的量測儀器、量測範圍與校正條件，相關量測規格可於設備評估時提供。"}},
+      {"@type":"Question","name":"分選資料可以儲存或串接 MES 嗎？","acceptedAnswer":{"@type":"Answer","text":"可以。設備可記錄每日生產資料，包括量測時間、電壓、內阻與分選結果，並支援 CSV 或 Excel 相容格式匯出。設備也可依既有 MES 或資料採集系統的介面需求進行整合評估；實際資料欄位、同步方式與整合範圍會於專案評估時確認。"}},
+      {"@type":"Question","name":"能否與既有設備或產線整合？","acceptedAnswer":{"@type":"Answer","text":"可以。鴻翔可依既有設備、廠房空間、上下游流程及產能需求，客製化規劃上料、量測、分選、下料與資料交換等自動化整合方案。實際整合方式需在確認既有設備介面及現場條件後規劃。"}}
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="faq.css">
+  <style>
+    .bg-industrial-action { background-color: #0369a1; }
+    .hover\:bg-industrial-action-hover:hover { background-color: #075985; }
+  </style>
+  <link rel="stylesheet" href="enquiry-protection.css">
+  <script src="enquiry-protection.js" defer></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>
 </head>
 <body class="overflow-x-hidden bg-slate-50 font-sans text-slate-900 antialiased selection:bg-sky-600 selection:text-white">
   <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-white focus:px-4 focus:py-3 focus:font-bold focus:text-slate-950">
@@ -85,7 +110,7 @@
         <a href="product-&-service.html" class="inline-flex min-h-11 items-center hover:text-white">產品及服務</a>
         <a href="automatic-battery-spot-welding-machine.html" class="inline-flex min-h-11 items-center hover:text-white">自動電池點焊機</a>
         <a href="battery-cell-sorting-machine.html" aria-current="page" class="inline-flex min-h-11 items-center font-bold text-sky-300">電芯分選機</a>
-        <a href="#enquiry" class="inline-flex min-h-11 items-center rounded bg-sky-600 px-5 font-bold text-white hover:bg-sky-500">索取規格</a>
+        <a href="#enquiry" class="inline-flex min-h-11 items-center rounded bg-industrial-action px-5 font-bold text-white hover:bg-industrial-action-hover">索取規格</a>
       </div>
       <button type="button" id="mobile-menu-btn" class="flex min-h-11 min-w-11 items-center justify-center rounded text-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300 lg:hidden" aria-label="開啟選單" aria-expanded="false" aria-controls="mobile-menu">
         <span data-menu-icon aria-hidden="true">☰</span>
@@ -96,7 +121,7 @@
       <a href="product-&-service.html" class="flex min-h-11 items-center border-t border-white/10 px-6 py-3">產品及服務</a>
       <a href="automatic-battery-spot-welding-machine.html" class="flex min-h-11 items-center border-t border-white/10 px-6 py-3">自動電池點焊機</a>
       <a href="battery-cell-sorting-machine.html" aria-current="page" class="flex min-h-11 items-center border-t border-white/10 px-6 py-3 font-bold text-sky-300">電芯分選機</a>
-      <a href="#enquiry" class="flex min-h-11 items-center border-t border-white/10 bg-sky-600 px-6 py-3 font-bold">索取規格與技術評估</a>
+      <a href="#enquiry" class="flex min-h-11 items-center border-t border-white/10 bg-industrial-action px-6 py-3 font-bold hover:bg-industrial-action-hover">索取規格與技術評估</a>
     </div>
   </header>
 
@@ -117,7 +142,7 @@
         <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-200">透過內阻與電壓測試，將圓柱電芯自動分選至對應流道，協助後續電池模組組裝維持一致的電芯條件。</p>
         <div class="mt-9 flex flex-wrap gap-4">
           <a href="#process" class="inline-flex min-h-12 items-center rounded bg-white px-6 py-3 font-bold text-slate-950 hover:bg-slate-100">了解分選流程</a>
-          <a href="#enquiry" class="inline-flex min-h-12 items-center rounded bg-sky-600 px-6 py-3 font-bold text-white hover:bg-sky-500">索取規格與技術評估</a>
+          <a href="#enquiry" class="inline-flex min-h-12 items-center rounded bg-industrial-action px-6 py-3 font-bold text-white hover:bg-industrial-action-hover">索取規格與技術評估</a>
         </div>
       </div>
     </section>
@@ -206,6 +231,68 @@
       </div>
     </section>
 
+    <section id="faq" class="faq-section">
+      <div class="mx-auto max-w-7xl px-6 py-20">
+        <div class="max-w-3xl">
+          <p class="text-sm font-bold text-sky-300">分選設備評估指南</p>
+          <h2 class="mt-3 text-3xl font-black tracking-tight md:text-4xl">電芯分選機常見問題</h2>
+          <p class="mt-5 leading-8 text-slate-300">整理電壓與內阻檢測、分選產能、資料輸出及產線整合等設備評估重點。</p>
+        </div>
+
+        <div class="faq-groups faq-groups--two">
+          <section aria-labelledby="sorting-faq-capability">
+            <h3 id="sorting-faq-capability" class="faq-group-title">檢測、上料與分選能力</h3>
+            <div class="faq-list">
+              <details class="faq-item" open>
+                <summary>電芯分選機可以檢測哪些項目？</summary>
+                <div class="faq-answer"><p>設備可量測圓柱電芯的電壓與內阻，並依設定的上下限區間，自動判定及分配電芯等級。分選參數可依不同批次的樣本、產品規格與品質要求進行設定。</p></div>
+              </details>
+              <details class="faq-item">
+                <summary>電芯分選機支援哪些上料方式？</summary>
+                <div class="faq-answer"><p>設備可依需求規劃人工放料或全自動上料。人工放料方案具有較高的操作彈性；全自動上料則適合需要穩定節拍、減少人力及提高產能的生產環境。</p></div>
+              </details>
+              <details class="faq-item">
+                <summary>可支援哪些圓柱電芯規格？</summary>
+                <div class="faq-answer"><p>標準應用可支援 18650 與 21700 圓柱電芯。其他圓柱電芯尺寸可依電芯外形、上下料方式、治具、檢測位置及產能需求進行客製化評估。</p></div>
+              </details>
+              <details class="faq-item">
+                <summary>電芯分選機有多少個分選通道？</summary>
+                <div class="faq-answer"><p>標準配置為 6 個分選槽加 1 個 NG 槽。設備可依設定的電壓與內阻區間，將合格電芯分配至不同等級，未符合設定條件的電芯則送入 NG 槽。</p></div>
+              </details>
+            </div>
+          </section>
+
+          <section aria-labelledby="sorting-faq-data">
+            <h3 id="sorting-faq-data" class="faq-group-title">產能、資料與系統整合</h3>
+            <div class="faq-list">
+              <details class="faq-item">
+                <summary>電芯分選機的分選速度是多少？</summary>
+                <div class="faq-answer">
+                  <p>設備的參考分選產能如下：</p>
+                  <ul><li>18650 電芯平均約 3,200 顆／小時</li><li>21700 電芯平均約 2,400 顆／小時</li></ul>
+                  <p class="mt-3">實際產能會依電芯規格、上料方式、量測條件、分選參數及客製化設備配置而有所不同。</p>
+                </div>
+              </details>
+              <details class="faq-item">
+                <summary>電壓與內阻的量測精度是多少？</summary>
+                <div class="faq-answer"><p>設備會依批次樣本與產品規格，設定電壓及內阻的分選區間。實際量測精度取決於專案選用的量測儀器、量測範圍與校正條件，相關量測規格可於設備評估時提供。</p></div>
+              </details>
+              <details class="faq-item">
+                <summary>分選資料可以儲存或串接 MES 嗎？</summary>
+                <div class="faq-answer"><p>可以。設備可記錄每日生產資料，包括量測時間、電壓、內阻與分選結果，並支援 CSV 或 Excel 相容格式匯出。設備也可依既有 MES 或資料採集系統的介面需求進行整合評估；實際資料欄位、同步方式與整合範圍會於專案評估時確認。</p></div>
+              </details>
+              <details class="faq-item">
+                <summary>能否與既有設備或產線整合？</summary>
+                <div class="faq-answer"><p>可以。鴻翔可依既有設備、廠房空間、上下游流程及產能需求，客製化規劃上料、量測、分選、下料與資料交換等自動化整合方案。實際整合方式需在確認既有設備介面及現場條件後規劃。</p></div>
+              </details>
+            </div>
+          </section>
+        </div>
+
+        <p class="faq-note">需要確認分選槽、產能或資料需求？<a href="#enquiry" class="ml-1 inline-flex min-h-11 items-center font-bold text-sky-300 hover:underline">提交電芯條件，取得技術評估</a></p>
+      </div>
+    </section>
+
     <section class="border-y border-slate-200 bg-sky-50">
       <div class="mx-auto flex max-w-7xl flex-col justify-between gap-8 px-6 py-14 md:flex-row md:items-center">
         <div>
@@ -230,7 +317,7 @@
           </div>
         </div>
 
-        <form data-product-enquiry-form action="https://script.google.com/macros/s/AKfycbx--816oY6G-QqbMACrQi5_2_ZhmQ67eXzD4BOAw3LhD-xdjPnwlFdD_ZdclkRMyLfLZQ/exec" method="post" target="product-enquiry-response" class="rounded-xl bg-slate-50 p-6 shadow-sm md:p-8">
+        <form data-enquiry-form action="https://script.google.com/macros/s/AKfycbx--816oY6G-QqbMACrQi5_2_ZhmQ67eXzD4BOAw3LhD-xdjPnwlFdD_ZdclkRMyLfLZQ/exec" method="post" target="product-enquiry-response" class="rounded-xl bg-slate-50 p-6 shadow-sm md:p-8">
           <input type="hidden" name="source" value="電芯分選機產品頁">
           <input type="hidden" name="inquiryType" value="索取電芯分選機規格">
           <div class="absolute -left-[10000px] opacity-0" aria-hidden="true">
@@ -248,7 +335,7 @@
             </div>
             <div>
               <label for="email" class="mb-2 block text-sm font-bold">電子信箱</label>
-              <input id="email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="120" required class="w-full rounded border border-slate-300 bg-white px-4 py-3 text-base focus:border-sky-600 focus:outline-none focus:ring-2 focus:ring-sky-200" placeholder="name@company.com">
+              <input id="email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="120" pattern="[^\s@]+@[^\s@]+\.[^\s@]+" title="請輸入完整的電子信箱，例如 name@company.com" required class="w-full rounded border border-slate-300 bg-white px-4 py-3 text-base focus:border-sky-600 focus:outline-none focus:ring-2 focus:ring-sky-200" placeholder="name@company.com">
             </div>
             <div>
               <label for="phone" class="mb-2 block text-sm font-bold">聯絡電話（選填）</label>
@@ -259,7 +346,12 @@
             <label for="message" class="mb-2 block text-sm font-bold">設備需求</label>
             <textarea id="message" name="message" rows="5" maxlength="2000" required class="w-full resize-y rounded border border-slate-300 bg-white px-4 py-3 text-base focus:border-sky-600 focus:outline-none focus:ring-2 focus:ring-sky-200" placeholder="請填寫電芯型號、分選條件、料盒形式、分類需求與預計產能"></textarea>
           </div>
-          <button type="submit" class="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded bg-sky-600 px-6 py-3 font-bold text-white hover:bg-sky-500 disabled:cursor-wait disabled:opacity-70">
+          <div class="mt-6">
+            <p class="mb-2 text-sm font-bold text-slate-700">安全驗證</p>
+            <div class="cf-turnstile min-h-[65px] max-w-full" data-sitekey="0x4AAAAAAEcIV-mbUM94ZEQL" data-action="enquiry" data-theme="light" data-language="zh-TW" data-size="flexible" data-callback="onEnquiryTurnstileSuccess" data-expired-callback="onEnquiryTurnstileExpired" data-error-callback="onEnquiryTurnstileError"></div>
+            <p class="mt-2 text-xs leading-5 text-slate-600">此驗證用來阻擋自動化垃圾訊息，不會儲存您的表單內容。</p>
+          </div>
+          <button type="submit" class="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded bg-industrial-action px-6 py-3 font-bold text-white hover:bg-industrial-action-hover disabled:cursor-wait disabled:opacity-70">
             <span data-submit-label>送出技術評估需求</span>
           </button>
           <p id="product-enquiry-status" class="mt-4 min-h-6 text-sm leading-6 text-slate-600" role="status" aria-live="polite"></p>

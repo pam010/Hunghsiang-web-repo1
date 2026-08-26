@@ -5,7 +5,12 @@ colors:
   industrial-navy: "#0f172a"
   industrial-slate: "#1e293b"
   structural-slate: "#334155"
-  action-blue: "#0284c7"
+  brand-blue: "#0284c7"
+  action-blue: "#0369a1"
+  action-blue-hover: "#075985"
+  signal-blue: "#7dd3fc"
+  supporting-text: "#cbd5e1"
+  error-red: "#b91c1c"
   light-surface: "#f8fafc"
   white: "#ffffff"
 typography:

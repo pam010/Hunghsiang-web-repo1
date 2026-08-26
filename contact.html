@@ -57,6 +57,9 @@
         ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #0284c7; }
     </style>
+    <link rel="stylesheet" href="enquiry-protection.css">
+    <script src="enquiry-protection.js" defer></script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>
 </head>
 <body class="bg-industrial-light text-industrial-900 antialiased overflow-x-hidden selection:bg-industrial-accent selection:text-white pt-20">
 
@@ -147,7 +150,7 @@
 
                     <div class="lg:col-span-3 p-10 lg:p-14">
                     <h4 class="text-xl font-bold text-industrial-900 mb-8 border-b-2 border-industrial-accent pb-2 inline-block">技術與報價諮詢表單</h4>
-                    <form id="enquiry-form" class="space-y-6" action="https://script.google.com/macros/s/AKfycbx--816oY6G-QqbMACrQi5_2_ZhmQ67eXzD4BOAw3LhD-xdjPnwlFdD_ZdclkRMyLfLZQ/exec" method="post" target="enquiry-response">
+                    <form id="enquiry-form" data-enquiry-form class="space-y-6" action="https://script.google.com/macros/s/AKfycbx--816oY6G-QqbMACrQi5_2_ZhmQ67eXzD4BOAw3LhD-xdjPnwlFdD_ZdclkRMyLfLZQ/exec" method="post" target="enquiry-response">
                         <input type="hidden" name="source" value="聯絡頁">
                         <div class="absolute -left-[10000px] opacity-0" aria-hidden="true">
                             <label for="website">請勿填寫此欄位</label>
@@ -168,7 +171,7 @@
                             </div>
                             <div>
                                 <label for="email" class="block text-xs font-bold text-gray-700 mb-2 uppercase">電子信箱</label>
-                                <input id="email" name="email" type="email" autocomplete="email" class="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-sm focus:outline-none focus:border-industrial-accent focus:ring-1 focus:ring-industrial-accent transition-colors" placeholder="name@company.com" required>
+                                <input id="email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="120" pattern="[^\s@]+@[^\s@]+\.[^\s@]+" title="請輸入完整的電子信箱，例如 name@company.com" class="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-sm focus:outline-none focus:border-industrial-accent focus:ring-1 focus:ring-industrial-accent transition-colors" placeholder="name@company.com" required>
                             </div>
                         </div>
                         
@@ -187,7 +190,13 @@
                             <textarea id="message" name="message" rows="4" class="w-full bg-gray-50 border border-gray-200 rounded px-4 py-3 text-sm focus:outline-none focus:border-industrial-accent focus:ring-1 focus:ring-industrial-accent transition-colors resize-none" placeholder="請簡述您的電池規格、預計產能或遭遇的製程痛點..."></textarea>
                         </div>
                         
-                        <button type="submit" class="w-full bg-industrial-900 hover:bg-industrial-800 text-white font-bold py-4 rounded transition-colors flex items-center justify-center gap-2">
+                        <div>
+                            <p class="mb-2 text-xs font-bold uppercase text-gray-700">安全驗證</p>
+                            <div class="cf-turnstile min-h-[65px] max-w-full" data-sitekey="0x4AAAAAAEcIV-mbUM94ZEQL" data-action="enquiry" data-theme="light" data-language="zh-TW" data-size="flexible" data-callback="onEnquiryTurnstileSuccess" data-expired-callback="onEnquiryTurnstileExpired" data-error-callback="onEnquiryTurnstileError"></div>
+                            <p class="mt-2 text-xs leading-5 text-gray-600">此驗證用來阻擋自動化垃圾訊息，不會儲存您的表單內容。</p>
+                        </div>
+
+                        <button type="submit" class="w-full bg-industrial-900 hover:bg-industrial-800 text-white font-bold py-4 rounded transition-colors flex items-center justify-center gap-2 disabled:cursor-wait disabled:opacity-70">
                             <span>送出評估需求</span>
                             <iconify-icon icon="mdi:send"></iconify-icon>
                         </button>
@@ -260,30 +269,6 @@
             }
       });
 
-        const enquiryForm = document.getElementById('enquiry-form');
-        const enquiryFrame = document.getElementById('enquiry-response');
-        const enquiryStatus = document.getElementById('enquiry-status');
-        const enquirySubmitButton = enquiryForm?.querySelector('button[type="submit"]');
-        const enquirySubmitText = enquirySubmitButton?.querySelector('span');
-        let enquirySubmitted = false;
-
-        enquiryForm?.addEventListener('submit', () => {
-            enquirySubmitted = true;
-            enquiryStatus.textContent = '正在送出，請稍候…';
-            enquirySubmitButton.disabled = true;
-            enquirySubmitButton.classList.add('opacity-70', 'cursor-wait');
-            enquirySubmitText.textContent = '送出中…';
-        });
-
-        enquiryFrame?.addEventListener('load', () => {
-            if (!enquirySubmitted) return;
-            enquirySubmitted = false;
-            enquiryForm.reset();
-            enquiryStatus.textContent = '已收到您的詢問，鴻翔團隊將盡快與您聯繫。';
-            enquirySubmitButton.disabled = false;
-            enquirySubmitButton.classList.remove('opacity-70', 'cursor-wait');
-            enquirySubmitText.textContent = '送出評估需求';
-        });
     </script>
 </body>
 </html>
